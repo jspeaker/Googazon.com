@@ -1,10 +1,8 @@
-using Microsoft.Azure.EventHubs;
 using Microsoft.Azure.WebJobs;
+using NeedFulfillment.Messaging;
 using NeedFulfillment.Models;
-using NeedFulfillment.Texts;
 using System;
 using System.Threading.Tasks;
-using NeedFulfillment.Messaging;
 
 namespace NeedFulfillment.Functions
 {
@@ -27,33 +25,4 @@ namespace NeedFulfillment.Functions
             }
         }
     }
-
-    public class EventHub
-    {
-        private static volatile EventHubClient _instance = null;
-        private static readonly object LockObject = new object();
-
-        public static EventHubClient Client
-        {
-            get
-            {
-                // ReSharper disable once InconsistentlySynchronizedField
-                if (_instance != null) return _instance;
-
-                lock (LockObject)
-                {
-                    if (_instance != null) return _instance;
-
-                    return EventHubClient.CreateFromConnectionString(
-                        new EventHubsConnectionStringBuilder(Environment.GetEnvironmentVariable("EventHubConnectionString"))
-                        {
-                            EntityPath = new RapidsKey(),
-                            TransportType = TransportType.AmqpWebSockets
-                        }.ToString());
-                }
-            }
-        }
-    }
-
-    // TODO : write tests around this class
 }

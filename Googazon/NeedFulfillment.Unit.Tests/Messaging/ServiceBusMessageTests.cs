@@ -111,7 +111,7 @@ namespace NeedFulfillment.Unit.Tests.Messaging
 
 
         [TestMethod, TestCategory("Unit")]
-        public void GivenEnrichedMessage_WhenAskingForItAsEventData_ThenItShouldReturnHydratedEventData()
+        public void GivenEnrichedMessage_WhenAskingForItAsEventData_ThenItShouldReturnHydratedEventDataWithDeserializableBody()
         {
             // arrange
             const string expected = "{\"Dammit\":\"Bobby!\",\"Results\":[{}]}";
