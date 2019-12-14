@@ -2,12 +2,9 @@ using Microsoft.Azure.EventHubs;
 using Microsoft.Azure.WebJobs;
 using NeedFulfillment.Models;
 using NeedFulfillment.Texts;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Text;
 using System.Threading.Tasks;
+using NeedFulfillment.Messaging;
 
 namespace NeedFulfillment.Functions
 {
@@ -19,21 +16,10 @@ namespace NeedFulfillment.Functions
         {
             try
             {
-                EventHubClient eventHubClient = EventHubClient.CreateFromConnectionString(
-                    new EventHubsConnectionStringBuilder(Environment.GetEnvironmentVariable("EventHubConnectionString"))
-                    {
-                        EntityPath = new RapidsKey(),
-                        TransportType = TransportType.AmqpWebSockets
-                    }.ToString());
-
                 ServiceBusMessage serviceBusMessage = new ServiceBusMessage(message);
-
                 if (serviceBusMessage.IsEnriched()) return;
 
-                EventData asEventData = serviceBusMessage.EnrichedInstance(new CallCenterState()).AsEventData();
-                await eventHubClient.SendAsync(asEventData);
-
-                Console.WriteLine($"C# ServiceBus topic trigger function enriched message: \n\n {message} \n\n as \n\n {serviceBusMessage}");
+                await EventHub.Client.SendAsync(serviceBusMessage.EnrichedInstance(new CallCenterState()).AsEventData());
             }
             catch (Exception e)
             {
@@ -42,35 +28,32 @@ namespace NeedFulfillment.Functions
         }
     }
 
-    // TODO : write tests around this class
-    public class ServiceBusMessage
+    public class EventHub
     {
-        private readonly Lazy<dynamic> _lazyMessageObject;
+        private static volatile EventHubClient _instance = null;
+        private static readonly object LockObject = new object();
 
-        private dynamic MessageObject => _lazyMessageObject.Value;
-
-        public ServiceBusMessage(string serviceBusMessage) : this(new Lazy<dynamic>(() => JsonConvert.DeserializeObject<ExpandoObject>(serviceBusMessage))) { }
-
-        public ServiceBusMessage(Lazy<dynamic> lazyMessageObject) => _lazyMessageObject = lazyMessageObject;
-
-        public static implicit operator string(ServiceBusMessage instance) => JsonConvert.SerializeObject(instance.MessageObject);
-
-        public bool IsEnriched() => ((IDictionary<string, object>) MessageObject).ContainsKey("Results");
-
-        // TODO: SRP this with strategies - violated guard clause policy
-        public ServiceBusMessage EnrichedInstance(dynamic enrichment)
+        public static EventHubClient Client
         {
-            ServiceBusMessage newMessageObject = new ServiceBusMessage(JsonConvert.SerializeObject(MessageObject));
-            if (newMessageObject.IsEnriched())
+            get
             {
-                ((List<dynamic>) newMessageObject.MessageObject.Results).Add(enrichment);
-                return newMessageObject;
+                // ReSharper disable once InconsistentlySynchronizedField
+                if (_instance != null) return _instance;
+
+                lock (LockObject)
+                {
+                    if (_instance != null) return _instance;
+
+                    return EventHubClient.CreateFromConnectionString(
+                        new EventHubsConnectionStringBuilder(Environment.GetEnvironmentVariable("EventHubConnectionString"))
+                        {
+                            EntityPath = new RapidsKey(),
+                            TransportType = TransportType.AmqpWebSockets
+                        }.ToString());
+                }
             }
-
-            newMessageObject.MessageObject.Results = new List<dynamic> { enrichment };
-            return newMessageObject;
         }
-
-        public EventData AsEventData() => new EventData(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_lazyMessageObject.Value)));
     }
+
+    // TODO : write tests around this class
 }
