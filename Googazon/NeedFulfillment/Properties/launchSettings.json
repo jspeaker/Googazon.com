@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "NeedFulfillment": {
+      "commandName": "Project",
+      "commandLineArgs": "host start --pause-on-error -p 7072"
+    }
+  }
+}

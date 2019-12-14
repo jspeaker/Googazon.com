@@ -1,10 +1,10 @@
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using System;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Microsoft.AspNetCore.Http;
 
 namespace GoogazonFunctions.Functions.CustomerService.CallCenter
 {
@@ -13,7 +13,7 @@ namespace GoogazonFunctions.Functions.CustomerService.CallCenter
         [FunctionName("CustomServiceCallCenter")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "customer/{customerId}/customerservice/callcenter")]
-            HttpRequest req,
+            HttpRequest request,
             string customerId)
         {
             try

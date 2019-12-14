@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "GoogazonFunctions": {
+      "commandName": "Project",
+      "commandLineArgs": "host start --pause-on-error -p 7071"
+    }
+  }
+}

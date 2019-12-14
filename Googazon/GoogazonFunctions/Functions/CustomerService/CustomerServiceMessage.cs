@@ -5,12 +5,12 @@ namespace GoogazonFunctions.Functions.CustomerService
 {
     public class CustomerServiceMessage : MessageBase
     {
-        private const EventType DefaultEventType = EventType.CustomerServiceNeed;
+        private const EventType DefaultEventType = Models.EventType.CustomerService;
 
         [JsonConstructor]
-        public CustomerServiceMessage(string customerId) : this(DefaultEventType) => _customerId = customerId;
+        public CustomerServiceMessage(string customerId, string need) : this(DefaultEventType, need) => _customerId = customerId;
 
-        private CustomerServiceMessage(EventType eventType) : base(eventType) { }
+        private CustomerServiceMessage(EventType eventType, string need) : base(eventType, need) { }
 
         [JsonProperty("customerId")]
         private readonly string _customerId;

@@ -10,20 +10,34 @@ namespace GoogazonFunctions.Models
         EventData EventData();
         bool IsEventType(EventType eventType);
         string UniqueIdentifier();
+        string Topic();
+    }
+
+    public class CandidateMessage : MessageBase {
+        public CandidateMessage(EventType eventType, string need) : base(eventType, need) { }
     }
 
     public abstract class MessageBase : IEventMessage
     {
-        protected MessageBase(EventType eventType) => EventType = eventType;
+        protected MessageBase(EventType eventType, string need)
+        {
+            _need = need;
+            EventType = eventType.ToString();
+        }
 
         public EventData EventData() => new EventData(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(this)));
 
-        public bool IsEventType(EventType eventType) => eventType.Equals(EventType);
+        public bool IsEventType(EventType eventType) => eventType.ToString().Equals(EventType);
 
         public string UniqueIdentifier() => _id.ToString();
 
+        public string Topic() => _need;
+
         [JsonProperty("eventType")]
-        protected readonly EventType EventType;
+        protected readonly string EventType;
+
+        [JsonProperty("need")]
+        protected readonly string _need;
 
         [JsonProperty("createdDateTime")]
         private readonly DateTime _createdDateTime = DateTime.Now.ToUniversalTime();
