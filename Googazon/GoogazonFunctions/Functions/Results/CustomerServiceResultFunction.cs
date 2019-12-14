@@ -12,10 +12,7 @@ namespace GoogazonFunctions.Functions.Results
         public void Run([ServiceBusTrigger("enrichedmessages", Connection = "CustomerServiceRiverConnectionString")] string serviceBusMessage)
         {
             dynamic messageObject = JsonConvert.DeserializeObject<ExpandoObject>(serviceBusMessage);
-            string id = messageObject.id;
-            InMemoryCache.Instance().Set(id, (ExpandoObject) messageObject, TimeSpan.FromSeconds(10));
-
-            Console.WriteLine($"{nameof(CustomerServiceResultFunction)} cached message: {serviceBusMessage}");
+            InMemoryCache.Instance().Set((string) messageObject.id, (ExpandoObject) messageObject, TimeSpan.FromSeconds(10));
         }
     }
 }

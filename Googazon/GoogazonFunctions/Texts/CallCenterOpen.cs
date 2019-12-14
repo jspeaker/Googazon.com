@@ -1,8 +1,8 @@
 namespace GoogazonFunctions.Texts
 {
-    public class CallCenterOpen
+    public class CallCenterOpenNeed
     {
         private const string Value = "callcenteropen";
-        public static implicit operator string(CallCenterOpen instance) => Value;
+        public static implicit operator string(CallCenterOpenNeed instance) => Value;
     }
 }

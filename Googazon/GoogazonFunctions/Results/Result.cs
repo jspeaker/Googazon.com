@@ -1,12 +1,13 @@
 using GoogazonFunctions.Texts;
 using Microsoft.Extensions.Caching.Memory;
+using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GoogazonFunctions.Functions.Results
+namespace GoogazonFunctions.Results
 {
     public interface IResult
     {
@@ -28,7 +29,7 @@ namespace GoogazonFunctions.Functions.Results
             });
 
             task.Start();
-            if (!task.Wait(5000)) throw new WebException(new TimeoutMessage());
+            if (!task.Wait(int.Parse(Environment.GetEnvironmentVariable("UniqueResultTimeoutMilliseconds")))) throw new WebException(new TimeoutMessage());
 
             InMemoryCache.Instance().Remove(id);
             return resultItem;

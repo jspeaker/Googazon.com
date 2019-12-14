@@ -1,25 +1,23 @@
+using GoogazonFunctions.Messaging;
 using GoogazonFunctions.Models;
 using Microsoft.Azure.EventHubs;
 using System.Threading.Tasks;
 
 namespace GoogazonFunctions.Needs
 {
+    public interface INeed
+    {
+        Task<EventData> SendAsync();
+    }
+
     public class Need : INeed
     {
         private readonly IEventMessage _eventMessage;
-        private readonly EventHubClient _eventHubClient;
+        private readonly IEventHubClient _eventHubClient;
 
-        public Need(IEventMessage eventMessage) : this(eventMessage,
-            new EventHubsConnectionStringBuilder("Endpoint=sb://googazon-rapids.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=JO4d/Bp05LEZWuITU52ZaUpO0u2nq5Bi1R2WmrsQaZw=")
-            {
-                EntityPath = "rapids",
-                TransportType = TransportType.AmqpWebSockets
-            }.ToString())
-        { }
+        public Need(IEventMessage eventMessage) : this(eventMessage, new EventHubClientFacade()) { }
 
-        private Need(IEventMessage eventMessage, string connectionString) : this(eventMessage, EventHubClient.CreateFromConnectionString(connectionString)) { }
-
-        private Need(IEventMessage eventMessage, EventHubClient eventHubClient)
+        public Need(IEventMessage eventMessage, IEventHubClient eventHubClient)
         {
             _eventMessage = eventMessage;
             _eventHubClient = eventHubClient;
@@ -30,5 +28,21 @@ namespace GoogazonFunctions.Needs
             await _eventHubClient.SendAsync(_eventMessage.EventData());
             return _eventMessage.EventData();
         }
+    }
+
+    public interface IEventHubClient
+    {
+        Task SendAsync(EventData eventData);
+    }
+
+    public class EventHubClientFacade : IEventHubClient
+    {
+        private readonly EventHubClient _eventHubClient;
+
+        public EventHubClientFacade() : this(EventHub.Client) { }
+
+        public EventHubClientFacade(EventHubClient eventHubClient) => _eventHubClient = eventHubClient;
+
+        public async Task SendAsync(EventData eventData) => await _eventHubClient.SendAsync(eventData);
     }
 }

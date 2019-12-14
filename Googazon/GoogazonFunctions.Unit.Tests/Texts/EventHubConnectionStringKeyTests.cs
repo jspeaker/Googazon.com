@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
+using GoogazonFunctions.Texts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NeedFulfillment.Texts;
 
-namespace NeedFulfillment.Unit.Tests.Texts
+namespace GoogazonFunctions.Unit.Tests.Texts
 {
     [TestClass]
     public class EventHubConnectionStringKeyTests
