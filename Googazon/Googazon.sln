@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Googazon.Library", "Googazo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Googazon.Library.Unit.Tests", "Googazon.Library.Unit.Tests\Googazon.Library.Unit.Tests.csproj", "{4E26DF4D-11D9-4EF2-9F31-42436E313B21}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConveniences", "TestConveniences\TestConveniences.csproj", "{EE57A733-90A0-4586-BBB6-B9FB24C52D3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{4E26DF4D-11D9-4EF2-9F31-42436E313B21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E26DF4D-11D9-4EF2-9F31-42436E313B21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E26DF4D-11D9-4EF2-9F31-42436E313B21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE57A733-90A0-4586-BBB6-B9FB24C52D3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE57A733-90A0-4586-BBB6-B9FB24C52D3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE57A733-90A0-4586-BBB6-B9FB24C52D3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE57A733-90A0-4586-BBB6-B9FB24C52D3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
