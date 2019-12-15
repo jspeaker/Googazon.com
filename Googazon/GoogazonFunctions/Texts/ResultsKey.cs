@@ -1,8 +1,9 @@
+using Googazon.Library.PrimitiveConcepts;
+
 namespace GoogazonFunctions.Texts
 {
-    public class ResultsKey
+    public class ResultsKey : Text
     {
-        private readonly string _value = "Results";
-        public static implicit operator string(ResultsKey instance) => instance._value;
+        public ResultsKey() : base("Results") { }
     }
 }

@@ -1,8 +1,9 @@
+using Googazon.Library.PrimitiveConcepts;
+
 namespace NeedFulfillment.Texts
 {
-    public class EventHubConnectionStringKey
+    public class EventHubConnectionStringKey : Text
     {
-        private readonly string _value = "EventHubConnectionString";
-        public static implicit operator string(EventHubConnectionStringKey instance) => instance._value;
+        public EventHubConnectionStringKey() : base("EventHubConnectionString") { }
     }
 }

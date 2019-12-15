@@ -1,4 +1,4 @@
-using GoogazonFunctions.Messaging;
+using Googazon.Library.Messaging;
 using GoogazonFunctions.Models;
 using Microsoft.Azure.EventHubs;
 using System.Threading.Tasks;

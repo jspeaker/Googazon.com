@@ -22,7 +22,7 @@ namespace GoogazonFunctions.Functions.Hydration
                 try
                 {
                     EventMessageBody eventMessageBody = new EventMessageBody(eventData);
-                    MessageBaseImplementation message = JsonConvert.DeserializeObject<MessageBaseImplementation>(eventMessageBody);
+                    IEventMessage message = JsonConvert.DeserializeObject<MessageBaseImplementation>(eventMessageBody);
                     if (!message.IsEventType(EventType.CustomerService)) continue;
 
                     await new ServiceBusMessage(eventMessageBody, message.Topic()).SendAsync();

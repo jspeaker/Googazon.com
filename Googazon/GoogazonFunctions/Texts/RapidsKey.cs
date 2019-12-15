@@ -1,8 +1,9 @@
+using Googazon.Library.PrimitiveConcepts;
+
 namespace GoogazonFunctions.Texts
 {
-    public class RapidsKey
+    public class RapidsKey : Text
     {
-        private readonly string _value = "rapids";
-        public static implicit operator string(RapidsKey instance) => instance._value;
+        public RapidsKey() : base("rapids") { }
     }
 }

@@ -5,11 +5,15 @@ VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoogazonFunctions", "GoogazonFunctions\GoogazonFunctions.csproj", "{7632D899-017E-4628-8725-B37946E85652}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeedFulfillment", "NeedFulfillment\NeedFulfillment.csproj", "{36A5408C-2401-4244-81A9-6A6D7A7EF5E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeedFulfillment", "NeedFulfillment\NeedFulfillment.csproj", "{36A5408C-2401-4244-81A9-6A6D7A7EF5E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeedFulfillment.Unit.Tests", "NeedFulfillment.Unit.Tests\NeedFulfillment.Unit.Tests.csproj", "{BBC64903-8B81-4895-992F-7C7B596362C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeedFulfillment.Unit.Tests", "NeedFulfillment.Unit.Tests\NeedFulfillment.Unit.Tests.csproj", "{BBC64903-8B81-4895-992F-7C7B596362C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogazonFunctions.Unit.Tests", "GoogazonFunctions.Unit.Tests\GoogazonFunctions.Unit.Tests.csproj", "{75C7AC55-58AD-4EE0-82CF-AC171DC42C8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoogazonFunctions.Unit.Tests", "GoogazonFunctions.Unit.Tests\GoogazonFunctions.Unit.Tests.csproj", "{75C7AC55-58AD-4EE0-82CF-AC171DC42C8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Googazon.Library", "Googazon.Library\Googazon.Library.csproj", "{2EF47915-BC51-4DE6-BE57-6772F063DFA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Googazon.Library.Unit.Tests", "Googazon.Library.Unit.Tests\Googazon.Library.Unit.Tests.csproj", "{4E26DF4D-11D9-4EF2-9F31-42436E313B21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{75C7AC55-58AD-4EE0-82CF-AC171DC42C8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75C7AC55-58AD-4EE0-82CF-AC171DC42C8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75C7AC55-58AD-4EE0-82CF-AC171DC42C8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EF47915-BC51-4DE6-BE57-6772F063DFA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EF47915-BC51-4DE6-BE57-6772F063DFA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EF47915-BC51-4DE6-BE57-6772F063DFA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EF47915-BC51-4DE6-BE57-6772F063DFA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E26DF4D-11D9-4EF2-9F31-42436E313B21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E26DF4D-11D9-4EF2-9F31-42436E313B21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E26DF4D-11D9-4EF2-9F31-42436E313B21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E26DF4D-11D9-4EF2-9F31-42436E313B21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

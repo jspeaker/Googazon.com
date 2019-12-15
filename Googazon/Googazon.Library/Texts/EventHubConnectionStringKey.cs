@@ -1,6 +1,6 @@
 using Googazon.Library.PrimitiveConcepts;
 
-namespace GoogazonFunctions.Texts
+namespace Googazon.Library.Texts
 {
     public class EventHubConnectionStringKey : Text
     {

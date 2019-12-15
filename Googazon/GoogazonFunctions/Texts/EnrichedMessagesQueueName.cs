@@ -1,8 +1,9 @@
-﻿namespace GoogazonFunctions.Texts
+﻿using Googazon.Library.PrimitiveConcepts;
+
+namespace GoogazonFunctions.Texts
 {
-    public class EnrichedMessagesQueueName
+    public class EnrichedMessagesQueueName : Text
     {
-        private readonly string _value = "enrichedmessages";
-        public static implicit operator string(EnrichedMessagesQueueName instance) => instance._value;
+        public EnrichedMessagesQueueName() : base("enrichedmessages") { }
     }
 }

@@ -1,8 +1,9 @@
-﻿namespace GoogazonFunctions.Texts
+﻿using Googazon.Library.PrimitiveConcepts;
+
+namespace GoogazonFunctions.Texts
 {
-    public class CustomerServiceRiverConnectionStringKey
+    public class CustomerServiceRiverConnectionStringKey : Text
     {
-        private readonly string _value = "CustomerServiceRiverConnectionString";
-        public static implicit operator string(CustomerServiceRiverConnectionStringKey instance) => instance._value;
+        public CustomerServiceRiverConnectionStringKey() : base("CustomerServiceRiverConnectionString") { }
     }
 }

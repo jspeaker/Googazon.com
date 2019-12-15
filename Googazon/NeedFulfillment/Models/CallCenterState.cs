@@ -13,6 +13,7 @@ namespace NeedFulfillment.Models
 
         public CallCenterState(ICallCenterOpen callCenterOpen) => _callCenterOpen = callCenterOpen;
 
+#pragma warning disable 414
         [JsonProperty("open")] private bool Open => _callCenterOpen.IsOpen();
 
         [JsonProperty("sourceOperation")] private readonly string _sourceOperation = nameof(CustomerServiceCallCenterOpenFunction);
@@ -20,5 +21,6 @@ namespace NeedFulfillment.Models
         [JsonProperty("sourceAssembly")] private readonly string _sourceAssembly = new AssemblyName();
 
         [JsonProperty("timestamp")] private readonly DateTime _enrichmentDateTime = DateTime.UtcNow;
+#pragma warning restore 414
     }
 }

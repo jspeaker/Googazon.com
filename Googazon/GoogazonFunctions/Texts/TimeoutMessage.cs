@@ -1,8 +1,9 @@
+using Googazon.Library.PrimitiveConcepts;
+
 namespace GoogazonFunctions.Texts
 {
-    public class TimeoutMessage
+    public class TimeoutMessage : Text
     {
-        private readonly string _value = "The result did not become available within the timeout period.";
-        public static implicit operator string(TimeoutMessage instance) => instance._value;
+        public TimeoutMessage() : base("The result did not become available within the timeout period.") { }
     }
 }

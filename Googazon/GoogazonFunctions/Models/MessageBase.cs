@@ -21,7 +21,7 @@ namespace GoogazonFunctions.Models
     {
         protected MessageBase(EventType eventType, string need)
         {
-            _need = need;
+            Need = need;
             EventType = eventType.ToString();
         }
 
@@ -31,13 +31,13 @@ namespace GoogazonFunctions.Models
 
         public string UniqueIdentifier() => _id.ToString();
 
-        public string Topic() => _need;
+        public string Topic() => Need;
 
         [JsonProperty("eventType")]
         protected readonly string EventType;
 
         [JsonProperty("need")]
-        protected readonly string _need;
+        protected readonly string Need;
 
         [JsonProperty("createdDateTime")]
         private readonly DateTime _createdDateTime = DateTime.Now.ToUniversalTime();

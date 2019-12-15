@@ -1,6 +1,6 @@
 using Googazon.Library.PrimitiveConcepts;
 
-namespace NeedFulfillment.Texts
+namespace Googazon.Library.Texts
 {
     public class RapidsKey : Text
     {

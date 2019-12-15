@@ -1,8 +1,8 @@
+using Googazon.Library.Texts;
 using Microsoft.Azure.EventHubs;
-using NeedFulfillment.Texts;
 using System;
 
-namespace NeedFulfillment.Messaging
+namespace Googazon.Library.Messaging
 {
     public class EventHub
     {
