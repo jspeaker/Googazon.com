@@ -2,7 +2,7 @@ namespace NeedFulfillment.Texts
 {
     public class EventHubConnectionStringKey
     {
-        private const string Value = "EventHubConnectionString";
-        public static implicit operator string(EventHubConnectionStringKey instance) => Value;
+        private readonly string _value = "EventHubConnectionString";
+        public static implicit operator string(EventHubConnectionStringKey instance) => instance._value;
     }
 }

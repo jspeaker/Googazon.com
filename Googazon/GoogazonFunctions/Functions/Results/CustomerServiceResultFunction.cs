@@ -3,6 +3,7 @@ using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
 using System;
 using System.Dynamic;
+using GoogazonFunctions.Caching;
 
 namespace GoogazonFunctions.Functions.Results
 {

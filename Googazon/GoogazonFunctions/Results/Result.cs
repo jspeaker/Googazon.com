@@ -6,6 +6,7 @@ using System.Dynamic;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using GoogazonFunctions.Caching;
 
 namespace GoogazonFunctions.Results
 {
@@ -29,6 +30,7 @@ namespace GoogazonFunctions.Results
             });
 
             task.Start();
+
             if (!task.Wait(int.Parse(Environment.GetEnvironmentVariable("UniqueResultTimeoutMilliseconds")))) throw new WebException(new TimeoutMessage());
 
             InMemoryCache.Instance().Remove(id);

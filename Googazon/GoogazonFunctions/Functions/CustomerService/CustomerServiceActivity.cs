@@ -1,8 +1,7 @@
-using GoogazonFunctions.Functions.Results;
 using GoogazonFunctions.Models;
 using GoogazonFunctions.Needs;
-using System.Threading.Tasks;
 using GoogazonFunctions.Results;
+using System.Threading.Tasks;
 
 namespace GoogazonFunctions.Functions.CustomerService
 {
@@ -10,19 +9,21 @@ namespace GoogazonFunctions.Functions.CustomerService
     {
         private readonly IEventMessage _eventMessage;
         private readonly INeed _need;
+        private readonly IResult _result;
 
-        protected CustomerServiceActivity(TMessage eventMessage) : this(eventMessage, new Need(eventMessage)) { }
+        protected CustomerServiceActivity(TMessage eventMessage) : this(eventMessage, new Need(eventMessage), new Result()) { }
 
-        private CustomerServiceActivity(IEventMessage eventMessage, INeed need)
+        private CustomerServiceActivity(IEventMessage eventMessage, INeed need, IResult result)
         {
             _eventMessage = eventMessage;
             _need = need;
+            _result = result;
         }
 
         public async Task<dynamic> ValueAsync()
         {
             await _need.SendAsync();
-            return new Result().Item(_eventMessage.UniqueIdentifier());
+            return _result.Item(_eventMessage.UniqueIdentifier());
         }
     }
 }

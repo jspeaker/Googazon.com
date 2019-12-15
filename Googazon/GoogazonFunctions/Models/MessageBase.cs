@@ -13,8 +13,8 @@ namespace GoogazonFunctions.Models
         string Topic();
     }
 
-    public class CandidateMessage : MessageBase {
-        public CandidateMessage(EventType eventType, string need) : base(eventType, need) { }
+    public class MessageBaseImplementation : MessageBase {
+        public MessageBaseImplementation(EventType eventType, string need) : base(eventType, need) { }
     }
 
     public abstract class MessageBase : IEventMessage

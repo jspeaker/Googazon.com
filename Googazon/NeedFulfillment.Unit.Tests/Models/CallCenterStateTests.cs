@@ -24,7 +24,7 @@ namespace NeedFulfillment.Unit.Tests.Models
             ((bool) dynamicStateObject.open).Should().BeTrue();
             ((string) dynamicStateObject.sourceOperation).Should().Be(nameof(CustomerServiceCallCenterOpenFunction));
             ((string) dynamicStateObject.sourceAssembly).Should().StartWith("NeedFulfillment");
-            ((DateTime) dynamicStateObject.timestamp).Should().BeAfter(DateTime.UtcNow.AddMilliseconds(-100));
+            ((DateTime) dynamicStateObject.timestamp).Should().BeAfter(DateTime.UtcNow.AddMilliseconds(-500));
         }
 
         [TestMethod, TestCategory("Unit")]

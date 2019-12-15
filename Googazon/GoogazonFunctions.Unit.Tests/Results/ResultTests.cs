@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Dynamic;
 using System.Net;
+using GoogazonFunctions.Caching;
 
 namespace GoogazonFunctions.Unit.Tests.Results
 {
