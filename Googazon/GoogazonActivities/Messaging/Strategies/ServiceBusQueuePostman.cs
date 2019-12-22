@@ -27,7 +27,7 @@ namespace GoogazonActivities.Messaging.Strategies
 
         public async Task SendAsync()
         {
-            if (!((IDictionary<string, object>) JsonConvert.DeserializeObject<ExpandoObject>(_messageBody)).ContainsKey(new ResultsKey()))
+            if (!((IDictionary<string, object>) JsonConvert.DeserializeObject<ExpandoObject>(_messageBody)).ContainsKey(new ResultsFieldName()))
             {
                 await _nextPostman.SendAsync();
                 return;

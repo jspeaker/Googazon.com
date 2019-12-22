@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using GoogazonActivities.Texts;
+using GoogazonActivities.Texts.ConfigurationKeys;
 using Microsoft.Azure.ServiceBus;
 
 namespace GoogazonActivities.Messaging

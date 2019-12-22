@@ -1,6 +1,6 @@
 ﻿using Googazon.Library.PrimitiveConcepts;
 
-namespace GoogazonActivities.Texts
+namespace GoogazonActivities.Texts.ServiceBus
 {
     public class ResultQueueName : Text
     {

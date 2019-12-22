@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using GoogazonActivities.Texts;
+using GoogazonActivities.Texts.ServiceBus;
 using Microsoft.Azure.ServiceBus;
 
 namespace GoogazonActivities.Messaging.Strategies
@@ -15,7 +15,7 @@ namespace GoogazonActivities.Messaging.Strategies
         public ServiceBusTopicPostman(string topic, string need, string messageBody, IServiceBusPostman nextPostman) : 
             this(ServiceBusTopic.Client(topic), new Message(Encoding.UTF8.GetBytes(messageBody))
             {
-                UserProperties = { new KeyValuePair<string, object>(new NeedText(), need)}
+                UserProperties = { new KeyValuePair<string, object>(new NeedUserPropertyName(), need)}
             }, nextPostman) { }
 
         public ServiceBusTopicPostman(ITopicClient topicClient, Message message, IServiceBusPostman nextPostman)

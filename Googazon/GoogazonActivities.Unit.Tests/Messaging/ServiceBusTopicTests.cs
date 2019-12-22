@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using FluentAssertions;
 using GoogazonActivities.Messaging;
-using GoogazonActivities.Texts;
+using GoogazonActivities.Texts.ConfigurationKeys;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TestConveniences;

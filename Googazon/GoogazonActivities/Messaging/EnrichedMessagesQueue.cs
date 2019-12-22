@@ -1,5 +1,6 @@
 ﻿using System;
-using GoogazonActivities.Texts;
+using GoogazonActivities.Texts.ConfigurationKeys;
+using GoogazonActivities.Texts.ServiceBus;
 using Microsoft.Azure.ServiceBus;
 
 namespace GoogazonActivities.Messaging
