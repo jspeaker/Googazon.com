@@ -4,6 +4,7 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using System;
 using System.Threading.Tasks;
 using System.Web.Http;
+using GoogazonActivities.CustomerService.CallCenter;
 using Microsoft.AspNetCore.Http;
 
 namespace GoogazonFunctions.Functions.CustomerService.CallCenter

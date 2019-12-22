@@ -1,9 +1,9 @@
-using GoogazonFunctions.Caching;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
 using System;
 using System.Dynamic;
+using GoogazonActivities.Caching;
 
 namespace GoogazonFunctions.Functions.Results
 {

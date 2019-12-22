@@ -1,5 +1,3 @@
-using GoogazonFunctions.Messaging;
-using GoogazonFunctions.Models;
 using Microsoft.Azure.EventHubs;
 using Microsoft.Azure.WebJobs;
 using Newtonsoft.Json;
@@ -7,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GoogazonActivities.Messaging;
+using GoogazonActivities.Models;
 
 namespace GoogazonFunctions.Functions.Hydration
 {
@@ -26,7 +26,7 @@ namespace GoogazonFunctions.Functions.Hydration
                     IEventMessage message = JsonConvert.DeserializeObject<MessageBaseImplementation>(eventMessageBody);
                     if (!message.IsEventType(EventType.CustomerService)) continue;
 
-                    await new ServiceBusMessage(eventMessageBody, message.Topic()).SendAsync();
+                    await new ServiceBusMessage(eventMessageBody, message.Topic(), message.Need()).SendAsync();
                 }
                 catch (Exception e)
                 {

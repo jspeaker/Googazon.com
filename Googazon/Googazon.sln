@@ -5,17 +5,21 @@ VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoogazonFunctions", "GoogazonFunctions\GoogazonFunctions.csproj", "{7632D899-017E-4628-8725-B37946E85652}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeedFulfillment", "NeedFulfillment\NeedFulfillment.csproj", "{36A5408C-2401-4244-81A9-6A6D7A7EF5E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeedFulfillmentFunctions", "NeedFulfillmentFunctions\NeedFulfillmentFunctions.csproj", "{36A5408C-2401-4244-81A9-6A6D7A7EF5E5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeedFulfillment.Unit.Tests", "NeedFulfillment.Unit.Tests\NeedFulfillment.Unit.Tests.csproj", "{BBC64903-8B81-4895-992F-7C7B596362C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeedFulfillmentActivities.Unit.Tests", "NeedFulfillmentActivities.Unit.Tests\NeedFulfillmentActivities.Unit.Tests.csproj", "{BBC64903-8B81-4895-992F-7C7B596362C7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoogazonFunctions.Unit.Tests", "GoogazonFunctions.Unit.Tests\GoogazonFunctions.Unit.Tests.csproj", "{75C7AC55-58AD-4EE0-82CF-AC171DC42C8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoogazonActivities.Unit.Tests", "GoogazonActivities.Unit.Tests\GoogazonActivities.Unit.Tests.csproj", "{75C7AC55-58AD-4EE0-82CF-AC171DC42C8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Googazon.Library", "Googazon.Library\Googazon.Library.csproj", "{2EF47915-BC51-4DE6-BE57-6772F063DFA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Googazon.Library", "Googazon.Library\Googazon.Library.csproj", "{2EF47915-BC51-4DE6-BE57-6772F063DFA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Googazon.Library.Unit.Tests", "Googazon.Library.Unit.Tests\Googazon.Library.Unit.Tests.csproj", "{4E26DF4D-11D9-4EF2-9F31-42436E313B21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Googazon.Library.Unit.Tests", "Googazon.Library.Unit.Tests\Googazon.Library.Unit.Tests.csproj", "{4E26DF4D-11D9-4EF2-9F31-42436E313B21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConveniences", "TestConveniences\TestConveniences.csproj", "{EE57A733-90A0-4586-BBB6-B9FB24C52D3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestConveniences", "TestConveniences\TestConveniences.csproj", "{EE57A733-90A0-4586-BBB6-B9FB24C52D3C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoogazonActivities", "GoogazonActivities\GoogazonActivities.csproj", "{32061F2E-E828-4333-8118-13403F60F5AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeedFulfillmentActivities", "NeedFulfillmentActivities\NeedFulfillmentActivities.csproj", "{2B0C35B2-9ABF-406D-B74B-21E79108C148}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +55,14 @@ Global
 		{EE57A733-90A0-4586-BBB6-B9FB24C52D3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE57A733-90A0-4586-BBB6-B9FB24C52D3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE57A733-90A0-4586-BBB6-B9FB24C52D3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32061F2E-E828-4333-8118-13403F60F5AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32061F2E-E828-4333-8118-13403F60F5AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32061F2E-E828-4333-8118-13403F60F5AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32061F2E-E828-4333-8118-13403F60F5AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B0C35B2-9ABF-406D-B74B-21E79108C148}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B0C35B2-9ABF-406D-B74B-21E79108C148}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B0C35B2-9ABF-406D-B74B-21E79108C148}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B0C35B2-9ABF-406D-B74B-21E79108C148}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
