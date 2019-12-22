@@ -30,6 +30,7 @@ namespace GoogazonActivities.Results
             {
                 while (resultItem is null || !((IDictionary<string, object>) resultItem).ContainsKey(new ResultsFieldName()))
                 {
+                    // TODO: make this timeout configurable
                     Thread.Sleep(10);
                     resultItem = InMemoryCache.Instance().Get<ExpandoObject>(id);
                 }
