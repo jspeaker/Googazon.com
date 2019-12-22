@@ -20,7 +20,7 @@ namespace GoogazonFunctions.Messaging
                 {
                     if (Instance != null) return Instance;
 
-                    return new QueueClient(Environment.GetEnvironmentVariable(new CustomerServiceRiverConnectionStringKey()), new EnrichedMessagesQueueName());
+                    return new QueueClient(Environment.GetEnvironmentVariable(new ServiceBusConnectionStringKey()), new EnrichedMessagesQueueName());
                 }
             }
         }

@@ -10,8 +10,8 @@ namespace NeedFulfillment.Functions
     public static class CustomerServiceCallCenterOpenFunction
     {
         [FunctionName("CustomerServiceCallCenterOpen")]
-        public static async Task Run([ServiceBusTrigger("callcenteropen", "callcenteropen", Connection = "CustomerServiceRiverConnectionString")]
-            string message)
+        public static async Task Run(
+            [ServiceBusTrigger("customerservice", "callcenter", Connection = "ServiceBusConnectionString")] string message)
         {
             try
             {

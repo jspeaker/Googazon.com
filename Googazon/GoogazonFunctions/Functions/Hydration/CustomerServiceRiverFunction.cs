@@ -13,7 +13,8 @@ namespace GoogazonFunctions.Functions.Hydration
     public class CustomerServiceRiverFunction
     {
         [FunctionName("CustomerServiceRiverFunction")]
-        public async Task Run([EventHubTrigger("rapids", Connection = "EventHubConnectionString")] EventData[] events)
+        public async Task Run(
+            [EventHubTrigger("rapids", Connection = "EventHubConnectionString")] EventData[] events)
         {
             List<Exception> exceptions = new List<Exception>();
 

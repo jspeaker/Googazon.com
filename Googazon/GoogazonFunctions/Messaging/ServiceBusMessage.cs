@@ -1,5 +1,5 @@
-using System.Threading.Tasks;
 using GoogazonFunctions.Messaging.Strategies;
+using System.Threading.Tasks;
 
 namespace GoogazonFunctions.Messaging
 {

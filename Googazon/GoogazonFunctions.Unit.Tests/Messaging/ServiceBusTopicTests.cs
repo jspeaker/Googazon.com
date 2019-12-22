@@ -1,10 +1,10 @@
 ﻿using FluentAssertions;
 using GoogazonFunctions.Messaging;
-using GoogazonFunctions.Texts;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using GoogazonFunctions.Texts;
 using TestConveniences;
 
 namespace GoogazonFunctions.Unit.Tests.Messaging
@@ -15,7 +15,7 @@ namespace GoogazonFunctions.Unit.Tests.Messaging
         [TestInitialize]
         public void Setup()
         {
-            Environment.SetEnvironmentVariable(new CustomerServiceRiverConnectionStringKey(), "Endpoint=sb://googazon-customerservice.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=asdf3tSTcS3NdZ+xPyvkhCgFIeed+f/P8WcSw+pxx5w=");
+            Environment.SetEnvironmentVariable(new ServiceBusConnectionStringKey(), "Endpoint=sb://googazon-customerservice.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=asdf3tSTcS3NdZ+xPyvkhCgFIeed+f/P8WcSw+pxx5w=");
             new Privateer().Field<Dictionary<string, ITopicClient>>(new ServiceBusTopic(), "TopicClients").Clear();
         }
 

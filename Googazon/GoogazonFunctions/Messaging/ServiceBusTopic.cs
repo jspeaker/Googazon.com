@@ -20,7 +20,7 @@ namespace GoogazonFunctions.Messaging
             {
                 if (TopicClients.ContainsKey(topic)) return TopicClients[topic];
 
-                TopicClient topicClient = new TopicClient(Environment.GetEnvironmentVariable(new CustomerServiceRiverConnectionStringKey()), topic);
+                TopicClient topicClient = new TopicClient(Environment.GetEnvironmentVariable(new ServiceBusConnectionStringKey()), topic);
                 TopicClients.Add(topic, topicClient);
                 return topicClient;
             }

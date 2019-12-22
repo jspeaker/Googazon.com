@@ -1,6 +1,6 @@
+using Microsoft.Azure.ServiceBus;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Azure.ServiceBus;
 
 namespace GoogazonFunctions.Messaging.Strategies
 {
