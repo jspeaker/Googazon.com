@@ -40,7 +40,9 @@
                   <p>
                     <span class="text-info small"><strong>{{ order.Results[0].sourceOperation }}</strong> open? {{ order.Results[0].open }}.</span>
                     <br />
-                    <span class="text-info small">Hours are {{order.Results[0].hours}}</span>
+                    <div class="row" v-for="hours in order.Results[0].hours.OpenHours" v-bind:key="order.id">
+                      <span class="text-info small">{{hours.DayOfWeek}}: {{hours.OpenTime}} to {{hours.CloseTime}}</span>
+                    </div>
                   </p>
                 </div>
               </div>

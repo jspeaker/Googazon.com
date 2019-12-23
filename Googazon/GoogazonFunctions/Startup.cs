@@ -8,7 +8,6 @@ namespace GoogazonFunctions
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddSignalRCore();
         }
 
         public override void Configure(IFunctionsHostBuilder builder)
