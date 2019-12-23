@@ -2,7 +2,8 @@ namespace GoogazonActivities.Models
 {
     public enum EventType
     {
-        CustomerService, 
-        Marketing
+        None = 0,
+        CustomerService = 1, 
+        Marketing = 2
     }
 }

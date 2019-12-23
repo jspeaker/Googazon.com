@@ -1,21 +1,23 @@
-using System;
 using NeedFulfillmentActivities.Texts;
 using Newtonsoft.Json;
+using System;
 
-namespace NeedFulfillmentActivities.Models
+namespace NeedFulfillmentActivities.Models.CallCenter
 {
     public class CallCenterState
     {
-        private readonly ICallCenterOpen _callCenterOpen;
+        private readonly IContactMethodOpen _callCenterOpen;
 
         public CallCenterState() : this(new CallCenterOpen()) { }
 
-        public CallCenterState(ICallCenterOpen callCenterOpen) => _callCenterOpen = callCenterOpen;
+        public CallCenterState(IContactMethodOpen callCenterOpen) => _callCenterOpen = callCenterOpen;
 
 #pragma warning disable 414
         [JsonProperty("open")] private bool Open => _callCenterOpen.IsOpen();
 
-        [JsonProperty("sourceOperation")] private readonly string _sourceOperation = "CustomerServiceCallCenterOpenFunction";
+        [JsonProperty("hours")] private string Hours => _callCenterOpen.Hours();
+
+        [JsonProperty("sourceOperation")] private readonly string _sourceOperation = "Call Center";
 
         [JsonProperty("sourceAssembly")] private readonly string _sourceAssembly = new AssemblyName();
 

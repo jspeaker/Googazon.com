@@ -1,9 +1,10 @@
-﻿using System;
-using System.Dynamic;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NeedFulfillmentActivities.Models;
+using NeedFulfillmentActivities.Models.CallCenter;
 using Newtonsoft.Json;
+using System;
+using System.Dynamic;
 
 namespace NeedFulfillmentActivities.Unit.Tests.Models
 {
@@ -21,7 +22,7 @@ namespace NeedFulfillmentActivities.Unit.Tests.Models
             string stateObject = JsonConvert.SerializeObject(callCenterState);
             dynamic dynamicStateObject = JsonConvert.DeserializeObject<ExpandoObject>(stateObject);
             ((bool) dynamicStateObject.open).Should().BeTrue();
-            ((string) dynamicStateObject.sourceOperation).Should().Be("CustomerServiceCallCenterOpenFunction");
+            ((string) dynamicStateObject.sourceOperation).Should().Be("Call Center");
             ((string) dynamicStateObject.sourceAssembly).Should().StartWith("NeedFulfillment");
             ((DateTime) dynamicStateObject.timestamp).Should().BeAfter(DateTime.UtcNow.AddMilliseconds(-500));
         }
@@ -37,18 +38,19 @@ namespace NeedFulfillmentActivities.Unit.Tests.Models
             string stateObject = JsonConvert.SerializeObject(callCenterState);
             dynamic dynamicStateObject = JsonConvert.DeserializeObject<ExpandoObject>(stateObject);
             ((bool) dynamicStateObject.open).Should().BeFalse();
-            ((string) dynamicStateObject.sourceOperation).Should().Be("CustomerServiceCallCenterOpenFunction");
+            ((string) dynamicStateObject.sourceOperation).Should().Be("Call Center");
             ((string) dynamicStateObject.sourceAssembly).Should().StartWith("NeedFulfillment");
-            ((DateTime) dynamicStateObject.timestamp).Should().BeAfter(DateTime.UtcNow.AddMilliseconds(-100));
+            ((DateTime) dynamicStateObject.timestamp).Should().BeAfter(DateTime.UtcNow.AddMilliseconds(-500));
         }
     }
 
-    public class FakeCallCenterOpen : ICallCenterOpen
+    public class FakeCallCenterOpen : IContactMethodOpen
     {
         private readonly bool _open;
 
         public FakeCallCenterOpen(bool open) => _open = open;
 
         public bool IsOpen() => _open;
+        public string Hours() => "From 9 to 5";
     }
 }

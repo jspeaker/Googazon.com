@@ -247,3 +247,5 @@ _Pvt_Extensions
 /Hatchpedia/Hatchpedia.Droid/Hatchpedia.Droid.csproj.bak
 *.ncrunchproject
 *.ncrunchsolution
+/Googazon/GoogazonClient/Properties/launchSettings.json
+/Googazon/GoogazonClient/appsettings.Development.json

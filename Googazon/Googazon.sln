@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestConveniences", "TestCon
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoogazonActivities", "GoogazonActivities\GoogazonActivities.csproj", "{32061F2E-E828-4333-8118-13403F60F5AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeedFulfillmentActivities", "NeedFulfillmentActivities\NeedFulfillmentActivities.csproj", "{2B0C35B2-9ABF-406D-B74B-21E79108C148}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeedFulfillmentActivities", "NeedFulfillmentActivities\NeedFulfillmentActivities.csproj", "{2B0C35B2-9ABF-406D-B74B-21E79108C148}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogazonClient", "GoogazonClient\GoogazonClient.csproj", "{96AF85B1-CBC7-446E-A5B5-6036EBA60CAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{2B0C35B2-9ABF-406D-B74B-21E79108C148}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B0C35B2-9ABF-406D-B74B-21E79108C148}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B0C35B2-9ABF-406D-B74B-21E79108C148}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96AF85B1-CBC7-446E-A5B5-6036EBA60CAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96AF85B1-CBC7-446E-A5B5-6036EBA60CAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96AF85B1-CBC7-446E-A5B5-6036EBA60CAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96AF85B1-CBC7-446E-A5B5-6036EBA60CAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
