@@ -2,15 +2,22 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NeedFulfillmentActivities.Models;
 using NeedFulfillmentActivities.Models.CallCenter;
+using NeedFulfillmentActivities.Texts;
 using Newtonsoft.Json;
 using System;
 using System.Dynamic;
 
-namespace NeedFulfillmentActivities.Unit.Tests.Models
+namespace NeedFulfillmentActivities.Unit.Tests.Models.CallCenter
 {
     [TestClass]
     public class CallCenterStateTests
     {
+        [TestInitialize]
+        public void Setup()
+        {
+            Environment.SetEnvironmentVariable(new CallCenterHoursKey(), "[{'DayOfWeek': 'Sunday','OpenTime': '10:00:00','CloseTime': '16:00:00'},{'DayOfWeek': 'Monday','OpenTime': '6:00:00','CloseTime': '18:00:00'},{'DayOfWeek': 'Tuesday','OpenTime': '6:00:00','CloseTime': '18:00:00'},{'DayOfWeek': 'Wednesday','OpenTime': '6:00:00','CloseTime': '18:00:00'},{'DayOfWeek': 'Thursday','OpenTime': '6:00:00','CloseTime': '18:00:00'},{'DayOfWeek': 'Friday','OpenTime': '6:00:00','CloseTime': '18:00:00'},{'DayOfWeek': 'Saturday','OpenTime': '8:00:00','CloseTime': '17:00:00'}]");
+        }
+
         [TestMethod, TestCategory("Unit")]
         public void GivenOpenCallCenter_WhenInstantiating_ThenItShouldReturnOpenStateHydratedObject()
         {
@@ -51,6 +58,6 @@ namespace NeedFulfillmentActivities.Unit.Tests.Models
         public FakeCallCenterOpen(bool open) => _open = open;
 
         public bool IsOpen() => _open;
-        public string Hours() => "From 9 to 5";
+        public NeedFulfillmentActivities.Models.BusinessHours.OpenHours OpenHours() => new NeedFulfillmentActivities.Models.BusinessHours.OpenHours(new CallCenterHoursKey());
     }
 }

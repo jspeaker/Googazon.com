@@ -1,22 +1,11 @@
 using NeedFulfillmentActivities.Facades;
-using System;
+using NeedFulfillmentActivities.Models.BusinessHours;
+using NeedFulfillmentActivities.Texts;
 
 namespace NeedFulfillmentActivities.Models.Email
 {
-    public class EmailOpen : IContactMethodOpen
+    public class EmailOpen : ContactMethodOpen
     {
-        private readonly IDateTime _dateTime;
-        public EmailOpen() : this(new DateTimeFacade()) { }
-
-        public EmailOpen(IDateTime dateTime) => _dateTime = dateTime;
-
-        private readonly TimeSpan _openFrom = TimeSpan.FromHours(5);
-        private readonly TimeSpan _closedAt = TimeSpan.FromHours(20);
-
-        public bool IsOpen() => _dateTime.UtcNow().TimeOfDay >= _openFrom && _dateTime.UtcNow().TimeOfDay <= _closedAt;
-        public string Hours()
-        {
-            return $"{_openFrom} until {_closedAt}";
-        }
+        public EmailOpen() : base(new DateTimeFacade(), new OpenHours(new EmailHoursKey())) { }
     }
 }

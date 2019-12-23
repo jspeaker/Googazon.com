@@ -1,10 +1,9 @@
 using Googazon.Library.Messaging;
 using Microsoft.Azure.WebJobs;
 using NeedFulfillmentActivities.Messaging;
-using NeedFulfillmentActivities.Models;
+using NeedFulfillmentActivities.Models.CallCenter;
 using System;
 using System.Threading.Tasks;
-using NeedFulfillmentActivities.Models.CallCenter;
 
 namespace NeedFulfillmentFunctions.Functions
 {

@@ -15,7 +15,7 @@ namespace NeedFulfillmentActivities.Models.Chat
 #pragma warning disable 414
         [JsonProperty("open")] private bool Open => _callCenterOpen.IsOpen();
 
-        [JsonProperty("hours")] private string Hours => _callCenterOpen.Hours();
+        [JsonProperty("hours")] private BusinessHours.OpenHours Hours => _callCenterOpen.OpenHours();
 
         [JsonProperty("sourceOperation")] private readonly string _sourceOperation = "Live Chat";
 
