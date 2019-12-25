@@ -1,9 +1,9 @@
+using Microsoft.Azure.EventHubs;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Text;
-using Microsoft.Azure.EventHubs;
-using Newtonsoft.Json;
 
 namespace NeedFulfillmentActivities.Messaging
 {
@@ -21,10 +21,10 @@ namespace NeedFulfillmentActivities.Messaging
 
         public bool IsEnriched() => ((IDictionary<string, object>) MessageObject).ContainsKey("Results");
 
-        // TODO: SRP this with strategies - violated guard clause policy
         public ServiceBusMessage EnrichedInstance(dynamic enrichment)
         {
             ServiceBusMessage newMessageObject = new ServiceBusMessage(JsonConvert.SerializeObject(MessageObject));
+            // TODO: SRP this with strategies - violated guard clause policy
             if (newMessageObject.IsEnriched())
             {
                 ((List<dynamic>) newMessageObject.MessageObject.Results).Add(enrichment);
