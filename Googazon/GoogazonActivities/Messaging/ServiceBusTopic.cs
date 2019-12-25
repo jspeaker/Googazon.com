@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using GoogazonActivities.Texts.ConfigurationKeys;
+﻿using GoogazonActivities.Configuration;
 using Microsoft.Azure.ServiceBus;
+using System.Collections.Generic;
 
 namespace GoogazonActivities.Messaging
 {
@@ -20,7 +19,7 @@ namespace GoogazonActivities.Messaging
             {
                 if (TopicClients.ContainsKey(topic)) return TopicClients[topic];
 
-                TopicClient topicClient = new TopicClient(Environment.GetEnvironmentVariable(new ServiceBusConnectionStringKey()), topic);
+                TopicClient topicClient = new TopicClient(new ServiceBusConfiguration().ConnectionString(), topic);
                 TopicClients.Add(topic, topicClient);
                 return topicClient;
             }

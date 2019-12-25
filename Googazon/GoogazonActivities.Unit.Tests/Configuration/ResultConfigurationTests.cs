@@ -1,7 +1,8 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentAssertions;
+﻿using FluentAssertions;
+using Googazon.Library.Exceptions;
 using GoogazonActivities.Configuration;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace GoogazonActivities.Unit.Tests.Configuration
 {
@@ -40,7 +41,7 @@ namespace GoogazonActivities.Unit.Tests.Configuration
             Action action = () => resultConfiguration.UniqueResultTimeout();
 
             // assert
-            action.Should().Throw<Exception>();
+            action.Should().Throw<ConfigurationItemNotFoundException>();
         }
 
         [TestMethod, TestCategory("Unit")]
@@ -53,7 +54,7 @@ namespace GoogazonActivities.Unit.Tests.Configuration
             Action action = () => resultConfiguration.UniqueResultTimeout();
 
             // assert
-            action.Should().Throw<Exception>();
+            action.Should().Throw<ConfigurationItemNotFoundException>();
         }
     }
 }

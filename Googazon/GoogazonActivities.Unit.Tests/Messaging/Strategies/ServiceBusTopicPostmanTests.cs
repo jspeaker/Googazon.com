@@ -1,11 +1,12 @@
-﻿using System;
-using System.Text;
-using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using GoogazonActivities.Messaging.Strategies;
+using GoogazonActivities.Texts.ConfigurationKeys;
 using GoogazonActivities.Unit.Tests.Fakes;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace GoogazonActivities.Unit.Tests.Messaging.Strategies
 {
@@ -48,6 +49,7 @@ namespace GoogazonActivities.Unit.Tests.Messaging.Strategies
         public void GivenNoTopic_WhenInstantiating_ThenItShouldThrow()
         {
             // arrange
+            Environment.SetEnvironmentVariable(new ServiceBusConnectionStringKey(), "connection-string");
             // act
             // ReSharper disable once ObjectCreationAsStatement
             Action action = () => new ServiceBusTopicPostman(string.Empty, string.Empty, "{}", new FakePostman());

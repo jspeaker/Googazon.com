@@ -249,3 +249,4 @@ _Pvt_Extensions
 *.ncrunchsolution
 /Googazon/GoogazonClient/Properties/launchSettings.json
 /Googazon/GoogazonClient/appsettings.Development.json
+/Googazon/NeedFulfillment/local.settings.json

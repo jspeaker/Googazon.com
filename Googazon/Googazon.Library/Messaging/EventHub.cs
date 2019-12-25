@@ -1,6 +1,6 @@
+using Googazon.Library.Configuration;
 using Googazon.Library.Texts;
 using Microsoft.Azure.EventHubs;
-using System;
 
 namespace Googazon.Library.Messaging
 {
@@ -21,7 +21,7 @@ namespace Googazon.Library.Messaging
                     if (Instance != null) return Instance;
 
                     return EventHubClient.CreateFromConnectionString(
-                        new EventHubsConnectionStringBuilder(Environment.GetEnvironmentVariable(new EventHubConnectionStringKey()))
+                        new EventHubsConnectionStringBuilder(new EventHubConfiguration().ConnectionString())
                         {
                             EntityPath = new RapidsKey(),
                             TransportType = TransportType.AmqpWebSockets

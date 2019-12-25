@@ -1,5 +1,4 @@
-﻿using System;
-using GoogazonActivities.Texts.ConfigurationKeys;
+﻿using GoogazonActivities.Configuration;
 using GoogazonActivities.Texts.ServiceBus;
 using Microsoft.Azure.ServiceBus;
 
@@ -21,7 +20,7 @@ namespace GoogazonActivities.Messaging
                 {
                     if (Instance != null) return Instance;
 
-                    return new QueueClient(Environment.GetEnvironmentVariable(new ServiceBusConnectionStringKey()), new ResultQueueName());
+                    return new QueueClient(new ServiceBusConfiguration().ConnectionString(), new ResultQueueName());
                 }
             }
         }

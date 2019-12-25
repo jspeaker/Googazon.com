@@ -1,4 +1,5 @@
 ﻿using Googazon.Library.PrimitiveConcepts;
+using NeedFulfillmentActivities.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace NeedFulfillmentActivities.Models.BusinessHours
         [JsonProperty("OpenHours")]
         private readonly List<Hours> _hours;
 
-        public OpenHours(Text businessHoursKey) : this(JsonConvert.DeserializeObject<List<Hours>>(Environment.GetEnvironmentVariable(businessHoursKey))) { }
+        public OpenHours(Text businessHoursKey) : this(new BusinessHoursConfiguration().Hours(businessHoursKey)) { }
 
         private OpenHours(List<Hours> hours) => _hours = hours;
 

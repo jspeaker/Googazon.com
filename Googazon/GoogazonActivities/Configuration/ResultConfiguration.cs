@@ -1,5 +1,6 @@
-﻿using System;
+﻿using Googazon.Library.Exceptions;
 using GoogazonActivities.Texts.ConfigurationKeys;
+using System;
 
 namespace GoogazonActivities.Configuration
 {
@@ -12,8 +13,9 @@ namespace GoogazonActivities.Configuration
     {
         public TimeSpan UniqueResultTimeout()
         {
-            if (!int.TryParse((string) Environment.GetEnvironmentVariable(new UniqueResultTimeoutMillisecondsKey()), out int timeout)) throw new Exception("Result timeout could not be parsed from configuration.");
-            return new TimeSpan(0, 0, 0, 0, timeout);
+            if (!int.TryParse(Environment.GetEnvironmentVariable(new UniqueResultTimeoutMillisecondsKey()), out int timeout)) throw new ConfigurationItemNotFoundException(new UniqueResultTimeoutMillisecondsKey());
+            
+            return TimeSpan.FromMilliseconds(timeout);
         }
     }
 }
