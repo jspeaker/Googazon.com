@@ -1,11 +1,13 @@
-﻿using System;
-using System.Dynamic;
-using System.Net;
-using FluentAssertions;
+﻿using FluentAssertions;
 using GoogazonActivities.Caching;
 using GoogazonActivities.Results;
+using GoogazonActivities.Texts;
+using GoogazonActivities.Texts.ConfigurationKeys;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Dynamic;
+using System.Net;
 
 namespace GoogazonActivities.Unit.Tests.Results
 {
@@ -17,7 +19,8 @@ namespace GoogazonActivities.Unit.Tests.Results
         [TestInitialize]
         public void Setup()
         {
-            Environment.SetEnvironmentVariable("UniqueResultTimeoutMilliseconds", "100");
+            Environment.SetEnvironmentVariable(new UniqueResultTimeoutMillisecondsKey(), "100");
+            Environment.SetEnvironmentVariable(new UniqueResultPollingFrequencyKey(), "100");
             InMemoryCache.Instance().Remove(Id);
         }
 

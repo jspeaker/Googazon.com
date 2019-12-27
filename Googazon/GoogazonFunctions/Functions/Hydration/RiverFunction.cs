@@ -22,11 +22,11 @@ namespace GoogazonFunctions.Functions.Hydration
             {
                 try
                 {
-                    EventMessageBody eventMessageBody = new EventMessageBody(eventData);
-                    IEventMessage message = JsonConvert.DeserializeObject<MessageBaseImplementation>(eventMessageBody);
+                    EventMessageBody messageBody = new EventMessageBody(eventData);
+                    IEventMessage message = JsonConvert.DeserializeObject<MessageBaseImplementation>(messageBody);
                     if (message.IsEventType(EventType.None)) continue;
 
-                    await new ServiceBusMessage(eventMessageBody, message.Topic(), message.Need()).SendAsync();
+                    await new ServiceBusMessage(messageBody, new Topic(messageBody), new Need(messageBody)).SendAsync();
                 }
                 catch (Exception e)
                 {

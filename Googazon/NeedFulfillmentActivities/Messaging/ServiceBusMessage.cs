@@ -1,4 +1,5 @@
 using Microsoft.Azure.EventHubs;
+using NeedFulfillmentActivities.Texts;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -19,22 +20,23 @@ namespace NeedFulfillmentActivities.Messaging
 
         public static implicit operator string(ServiceBusMessage instance) => JsonConvert.SerializeObject(instance.MessageObject);
 
-        public bool IsEnriched() => ((IDictionary<string, object>) MessageObject).ContainsKey("Results");
+        public bool IsEnriched() => ((IDictionary<string, object>) MessageObject).ContainsKey(new ResultsKey());
 
         public ServiceBusMessage EnrichedInstance(dynamic enrichment)
         {
-            ServiceBusMessage newMessageObject = new ServiceBusMessage(JsonConvert.SerializeObject(MessageObject));
-            // TODO: SRP this with strategies - violated guard clause policy
-            if (newMessageObject.IsEnriched())
-            {
-                ((List<dynamic>) newMessageObject.MessageObject.Results).Add(enrichment);
-                return newMessageObject;
-            }
+            ServiceBusMessage newInstance = new ServiceBusMessage(JsonConvert.SerializeObject(MessageObject));
+            if (newInstance.IsEnriched()) return WithAdditionalResult(newInstance, enrichment);
 
-            newMessageObject.MessageObject.Results = new List<dynamic> { enrichment };
-            return newMessageObject;
+            newInstance.MessageObject.Results = new List<dynamic> { enrichment };
+            return newInstance;
         }
 
         public EventData AsEventData() => new EventData(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_lazyMessageObject.Value)));
+
+        private static ServiceBusMessage WithAdditionalResult(ServiceBusMessage serviceBusMessage, dynamic additionalResult)
+        {
+            ((List<dynamic>) serviceBusMessage.MessageObject.Results).Add(additionalResult);
+            return serviceBusMessage;
+        }
     }
 }

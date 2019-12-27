@@ -1,12 +1,12 @@
+using GoogazonActivities.Caching;
+using GoogazonActivities.Configuration;
+using GoogazonActivities.Texts;
+using Microsoft.Extensions.Caching.Memory;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using GoogazonActivities.Caching;
-using GoogazonActivities.Configuration;
-using GoogazonActivities.Texts;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace GoogazonActivities.Results
 {
@@ -18,21 +18,25 @@ namespace GoogazonActivities.Results
     public class Result : IResult
     {
         private readonly IResultConfiguration _configuration;
+        private readonly IMemoryCache _memoryCache;
 
-        public Result() : this(new ResultConfiguration()) { }
+        public Result() : this(new ResultConfiguration(), InMemoryCache.Instance()) { }
 
-        public Result(IResultConfiguration configuration) => _configuration = configuration;
+        public Result(IResultConfiguration configuration, IMemoryCache memoryCache)
+        {
+            _configuration = configuration;
+            _memoryCache = memoryCache;
+        }
 
         public ExpandoObject Item(string id)
         {
-            dynamic resultItem = InMemoryCache.Instance().Get<ExpandoObject>(id);
+            dynamic resultItem = _memoryCache.Get<ExpandoObject>(id);
             Task task = new Task(() =>
             {
                 while (resultItem is null || !((IDictionary<string, object>) resultItem).ContainsKey(new ResultsFieldName()))
                 {
-                    // TODO: make this timeout configurable
-                    Thread.Sleep(10);
-                    resultItem = InMemoryCache.Instance().Get<ExpandoObject>(id);
+                    Thread.Sleep(_configuration.PollingFrequency());
+                    resultItem = _memoryCache.Get<ExpandoObject>(id);
                 }
             });
 

@@ -1,7 +1,7 @@
-using System;
-using System.Text;
 using Microsoft.Azure.EventHubs;
 using Newtonsoft.Json;
+using System;
+using System.Text;
 
 namespace GoogazonActivities.Models
 {
