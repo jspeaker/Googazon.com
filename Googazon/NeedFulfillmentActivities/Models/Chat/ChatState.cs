@@ -17,6 +17,8 @@ namespace NeedFulfillmentActivities.Models.Chat
 
         [JsonProperty("hours")] private BusinessHours.OpenHours Hours => _callCenterOpen.OpenHours();
 
+        [JsonProperty("url")] private string Url => "/chat.html";
+
         [JsonProperty("sourceOperation")] private readonly string _sourceOperation = "Live Chat";
 
         [JsonProperty("sourceAssembly")] private readonly string _sourceAssembly = new AssemblyName();

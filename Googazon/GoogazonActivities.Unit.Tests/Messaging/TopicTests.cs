@@ -15,7 +15,7 @@ namespace GoogazonActivities.Unit.Tests.Messaging
         {
             // arrange
             const string expected = "Strickland Propane";
-            EventData eventData = new EventData(Encoding.UTF8.GetBytes($"{{'EventType':'{expected}'}}"));
+            EventData eventData = new EventData(Encoding.UTF8.GetBytes($"{{'eventType':'{expected}'}}"));
             EventMessageBody eventMessageBody = new EventMessageBody(eventData);
 
             // act

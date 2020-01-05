@@ -5,51 +5,17 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
 
   <style>
-    .slide-fade-enter-active, .slide-fade-leave-active {
-      transition: all 1s ease;
-    }
-
-    .slide-fade-enter, .slide-fade-leave-to {
-      height: 0px;
-      overflow-y: hidden;
-      opacity: 0;
-    }
   </style>
 </head>
 
 <body>
   <p>&nbsp;</p>
   <div id="app" class="container">
-    <h3>Customer Service Contact Options</h3>
-    <div class="row" >
-      <div class="col-sm" id="currentDateTime"></div>
-    </div>
-    <div class="row" v-if="!ready">
-      <div class="col-sm">
-        <div>Loading...</div>
-      </div>
-    </div>
-    <div v-if="ready">
-      <transition-group name="slide-fade" tag="div">
-        <div class="row" v-for="order in orders" v-bind:key="order.id">
-          <div class="col-sm">
-            <hr />
-            <div>
-              <div style="display: inline-block; padding-left: 12px;">
-                <div>
-                  <p>
-                    <span class="text-info small"><strong>{{ order.Results[0].sourceOperation }}</strong> open? {{ order.Results[0].open }}.</span>
-                    <br />
-                    <div class="row" v-for="hours in order.Results[0].hours.OpenHours" v-bind:key="order.id">
-                      <span class="text-info small">{{hours.DayOfWeek}}: {{hours.OpenTime}} to {{hours.CloseTime}}</span>
-                    </div>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </transition-group>
+    <h3>Home</h3>
+    <div class="row">
+      <nav class="col-sm" id="navigation">
+        <a href="/">Home</a> | <a href="customerservice.html">Contact Us</a>
+      </nav>
     </div>
   </div>
 
@@ -61,48 +27,6 @@
           integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
           crossorigin="anonymous"></script>
 
-  <script>
-    const data = {
-      orders: [],
-      ready: false
-    };
-
-    const app = new Vue({
-      el: '#app',
-      data: data,
-      methods: {
-      }
-    });
-
-    const connection = new signalR.HubConnectionBuilder()
-      .withUrl('http://localhost:7071/api')
-      .configureLogging(signalR.LogLevel.Information)
-      .build();
-
-    connection.on('customerServiceNeed', customerServiceNeed);
-    connection.onclose(() => console.log('disconnected'));
-
-    console.log('connecting...');
-    connection.start()
-      .then(() => data.ready = true)
-      .catch(console.error);
-
-    let counter = 0;
-
-    function customerServiceNeed(fulfilledNeed) {
-      var fulfilledNeedObject = JSON.parse(fulfilledNeed);
-
-      fulfilledNeedObject.id = counter++; // vue transitions need an id
-      data.orders.unshift(fulfilledNeedObject);
-    }
-
-    $(document).ready(function () {
-      $.ajax("http://localhost:7071/api/customer/222/customerservice/contact");
-
-      $("#currentDateTime").text((new Date()).toUTCString());
-
-    });
-  </script>
 </body>
 
 </html>

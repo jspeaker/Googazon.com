@@ -34,11 +34,9 @@ namespace GoogazonFunctions.Functions.Hydration
                 }
             }
 
-            if (exceptions.Count > 1)
-                throw new AggregateException(exceptions);
+            if (exceptions.Count > 1) throw new AggregateException(exceptions);
 
-            if (exceptions.Count == 1)
-                throw exceptions.Single();
+            if (exceptions.Count == 1) throw exceptions.Single();
         }
     }
 }
