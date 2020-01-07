@@ -9,9 +9,9 @@ using System.Web.Http;
 
 namespace GoogazonFunctions.Functions.TopicNeed
 {
-    public static class TopicNeedFunction
+    public static class CustomerTopicNeedFunction
     {
-        [FunctionName("TopicNeed")]
+        [FunctionName("CustomerTopicNeed")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "customer/{customerId}/{topic}/{need}")] HttpRequest request,
             string customerId, string topic, string need)

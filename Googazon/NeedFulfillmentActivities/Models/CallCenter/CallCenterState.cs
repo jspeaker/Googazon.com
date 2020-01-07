@@ -16,6 +16,7 @@ namespace NeedFulfillmentActivities.Models.CallCenter
         [JsonProperty("open")] private bool Open => _callCenterOpen.IsOpen();
 
         [JsonProperty("hours")] private BusinessHours.OpenHours Hours => _callCenterOpen.OpenHours();
+        [JsonProperty("phoneNumber")] private string PhoneNumber => "18662223333";
 
         [JsonProperty("sourceOperation")] private readonly string _sourceOperation = "Call Center";
 
