@@ -19,8 +19,8 @@ namespace GoogazonActivities.Unit.Tests.Results
         [TestInitialize]
         public void Setup()
         {
-            Environment.SetEnvironmentVariable(new UniqueResultTimeoutMillisecondsKey(), "100");
-            Environment.SetEnvironmentVariable(new UniqueResultPollingFrequencyKey(), "100");
+            Environment.SetEnvironmentVariable(new UniqueResultTimeoutMillisecondsKey(), "500");
+            Environment.SetEnvironmentVariable(new UniqueResultPollingFrequencyKey(), "10");
             InMemoryCache.Instance().Remove(Id);
         }
 
