@@ -50,15 +50,15 @@
 
                     <span class="text-info small" v-if="contactOption.Results[0].open && contactOption.Results[0].url"><a class="text-primary" v-bind:href="contactOption.Results[0].url">Chat with a Representative</a> </span>
                     <span class="text-info small" v-if="contactOption.Results[0].open && contactOption.Results[0].email"><a class="text-primary" v-on:click="mailTo(contactOption.Results[0].email)">Email Us</a> </span>
-                    <span class="text-info small" v-if="contactOption.Results[0].open && contactOption.Results[0].phoneNumber">Call Us at {{ contactOption.Results[0].phoneNumber }} </span>
-                    <span class="text-info small" v-if="contactOption.Results[0].open && contactOption.Results[0].address">Visit Us at {{ contactOption.Results[0].address.streetAddress1 }}, {{ contactOption.Results[0].address.city }}, {{ contactOption.Results[0].address.state }} {{ contactOption.Results[0].address.zipCode }}</span>
-                    
-                    <div class="text-info small" v-if="!contactOption.Results[0].open">Hours of operation ({{ Intl.DateTimeFormat().resolvedOptions().timeZone }}):</div>
-                    <span class="col-sm-7" v-if="!contactOption.Results[0].open" v-for="hours in contactOption.Results[0].hours.OpenHours" v-bind:key="hours.id">
+                    <!--<span class="text-info small" v-if="contactOption.Results[0].open && contactOption.Results[0].phoneNumber">Call Us at {{ contactOption.Results[0].phoneNumber }} </span>
+                    <span class="text-info small" v-if="contactOption.Results[0].open && contactOption.Results[0].headquartersAddress">Visit Us at {{ contactOption.Results[0].headquartersAddress.streetAddress1 }}, {{ contactOption.Results[0].headquartersAddress.city }}, {{ contactOption.Results[0].headquartersAddress.state }} {{ contactOption.Results[0].headquartersAddress.zipCode }}</span>-->
+
+                    <div class="text-info small" v-if="!contactOption.Results[0].open">Hours of operation:</div>
+                    <div class="" v-if="!contactOption.Results[0].open" v-for="hours in contactOption.Results[0].hours.OpenHours" v-bind:key="hours.id">
                       <span class="text-info small">{{ daysOfWeek[hours.DayOfWeek] }}</span>
                       <span class="text-info small" v-if="hours.OpenTime === hours.CloseTime">Closed</span>
                       <span class="text-info small" v-if="hours.OpenTime !== hours.CloseTime">{{ new Date("1970-01-01T" + hours.OpenTime + "Z").toLocaleTimeString() }} to {{ new Date("1970-01-01T" + hours.CloseTime + "Z").toLocaleTimeString() }}</span>
-                    </span>
+                    </div>
                   </p>
                 </div>
               </div>
@@ -94,8 +94,7 @@
 
   function mailTo(email) {
     document.location.href = "mailto:" + email;
-  };
-
+  };;
   const connection = new signalR.HubConnectionBuilder()
     .withUrl('http://localhost:7071/api')
     .configureLogging(signalR.LogLevel.Information)
@@ -121,7 +120,7 @@
   $(document).ready(function () {
     $.ajax("http://localhost:7071/api/customer/222/customerservice/contact");
 
-    $("#currentDateTime").text((new Date()).toUTCString());
+    $("#currentDateTime").text((new Date()));
 
   });
 </script>
