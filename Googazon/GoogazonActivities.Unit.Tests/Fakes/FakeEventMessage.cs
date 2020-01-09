@@ -1,6 +1,6 @@
-﻿using System;
-using GoogazonActivities.Models;
+﻿using GoogazonActivities.Models;
 using Microsoft.Azure.EventHubs;
+using System;
 
 namespace GoogazonActivities.Unit.Tests.Fakes
 {
@@ -12,24 +12,12 @@ namespace GoogazonActivities.Unit.Tests.Fakes
 
         public EventData EventData() => _eventData;
 
-        public bool IsEventType(EventType eventType)
-        {
-            throw new NotImplementedException();
-        }
+        public bool IsEventType(EventType eventType) => true;
 
-        public string UniqueIdentifier()
-        {
-            throw new NotImplementedException();
-        }
+        public string UniqueIdentifier() => Guid.Empty.ToString();
 
-        public string Topic()
-        {
-            throw new NotImplementedException();
-        }
+        public string Topic() => "topic";
 
-        public string Need()
-        {
-            throw new NotImplementedException();
-        }
+        public string Need() => "need";
     }
 }
