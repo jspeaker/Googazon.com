@@ -1,11 +1,11 @@
-﻿using System;
-using System.Dynamic;
-using System.Text;
-using FluentAssertions;
+﻿using FluentAssertions;
 using GoogazonActivities.Models;
 using Microsoft.Azure.EventHubs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using System;
+using System.Dynamic;
+using System.Text;
 
 namespace GoogazonActivities.Unit.Tests.Models
 {
@@ -61,7 +61,7 @@ namespace GoogazonActivities.Unit.Tests.Models
         }
 
         [TestMethod, TestCategory("Unit")]
-        public void GivenHydratedObject_WhenAskingForNeed_TheItShouldReturnEventType()
+        public void GivenHydratedObject_WhenAskingForNeed_TheItShouldReturnNeed()
         {
             // arrange
             const string need = "offer";
