@@ -16,7 +16,7 @@ namespace GoogazonActivities.TopicNeedActivity
         private readonly IEventMessage _eventMessage;
         private readonly INeed _need;
         private readonly IResult _result;
-        public TopicNeedActivity(string customerId, string topic, string need) : this(new TopicNeedMessage(customerId, topic, need)) { }
+        public TopicNeedActivity(string connectionId, string customerId, string topic, string need) : this(new TopicNeedMessage( connectionId, customerId, topic, need)) { }
 
         private TopicNeedActivity(IEventMessage eventMessage) : this(eventMessage, new Need(eventMessage), new Result()) { }
 
@@ -33,9 +33,6 @@ namespace GoogazonActivities.TopicNeedActivity
             return _result.Item(_eventMessage.UniqueIdentifier());
         }
 
-        public async Task ExpressNeed()
-        {
-            await _need.SendAsync();
-        }
+        public async Task ExpressNeed() => await _need.SendAsync();
     }
 }

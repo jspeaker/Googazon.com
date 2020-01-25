@@ -10,7 +10,7 @@ namespace GoogazonActivities.Unit.Tests.Fakes
 
         public FakeEventMessage(EventData eventData) => _eventData = eventData;
 
-        public EventData EventData() => _eventData;
+        public EventData AsEventData() => _eventData;
 
         public bool IsEventType(EventType eventType) => true;
 

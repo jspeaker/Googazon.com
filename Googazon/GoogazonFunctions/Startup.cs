@@ -7,6 +7,7 @@ namespace GoogazonFunctions
     {
         public override void Configure(IFunctionsHostBuilder builder)
         {
+            
         }
     }
 }

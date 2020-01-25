@@ -4,21 +4,23 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace GoogazonFunctions.Functions.TopicNeed
 {
-    public static class CustomerTopicNeedFunction
+    public static class ResourceTopicNeedFunction
     {
-        [FunctionName("CustomerTopicNeed")]
+        [FunctionName("ResourceTopicNeed")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "customer/{customerId}/{topic}/{need}")] HttpRequest request,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "{resource}/{customerId}/{topic}/{need}")] HttpRequest request,
             string customerId, string topic, string need)
         {
             try
             {
-                await new TopicNeedActivity(customerId, topic, need).ExpressNeed();
+                string connectionId = request.Headers["X-ConnectionId"].First();
+                await new TopicNeedActivity(connectionId, customerId, topic, need).ExpressNeed();
                 return new OkResult();
             }
             catch (Exception)

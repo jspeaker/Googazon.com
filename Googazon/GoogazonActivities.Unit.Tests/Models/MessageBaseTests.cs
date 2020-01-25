@@ -21,7 +21,7 @@ namespace GoogazonActivities.Unit.Tests.Models
             MessageBaseImplementation message = new MessageBaseImplementation(eventType, need);
 
             // act
-            EventData actual = message.EventData();
+            EventData actual = message.AsEventData();
 
             // assert
             dynamic dynamicActual = JsonConvert.DeserializeObject<ExpandoObject>(Encoding.UTF8.GetString(actual.Body.Array));
@@ -43,36 +43,6 @@ namespace GoogazonActivities.Unit.Tests.Models
             // assert
             Guid guid = Guid.Parse(actual);
             guid.Should().NotBeEmpty();
-        }
-
-        [TestMethod, TestCategory("Unit")]
-        public void GivenHydratedObject_WhenAskingForTopic_TheItShouldReturnEventType()
-        {
-            // arrange
-            const string need = "offer";
-            const EventType eventType = EventType.Marketing;
-            MessageBaseImplementation message = new MessageBaseImplementation(eventType, need);
-
-            // act
-            string actual = message.Topic();
-
-            // assert
-            actual.Should().Be(eventType.ToString());
-        }
-
-        [TestMethod, TestCategory("Unit")]
-        public void GivenHydratedObject_WhenAskingForNeed_TheItShouldReturnNeed()
-        {
-            // arrange
-            const string need = "offer";
-            const EventType eventType = EventType.Marketing;
-            MessageBaseImplementation message = new MessageBaseImplementation(eventType, need);
-
-            // act
-            string actual = message.Need();
-
-            // assert
-            actual.Should().Be(need);
         }
 
         [TestMethod, TestCategory("Unit")]

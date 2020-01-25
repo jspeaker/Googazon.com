@@ -25,8 +25,8 @@ namespace GoogazonActivities.Needs
 
         public async Task<EventData> SendAsync()
         {
-            await _eventHubClient.SendAsync(_eventMessage.EventData());
-            return _eventMessage.EventData();
+            await _eventHubClient.SendAsync(_eventMessage.AsEventData());
+            return _eventMessage.AsEventData();
         }
     }
 }

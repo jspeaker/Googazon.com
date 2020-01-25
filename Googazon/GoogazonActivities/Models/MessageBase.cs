@@ -7,11 +7,9 @@ namespace GoogazonActivities.Models
 {
     public interface IEventMessage
     {
-        EventData EventData();
+        EventData AsEventData();
         bool IsEventType(EventType eventType);
         string UniqueIdentifier();
-        string Topic();
-        string Need();
     }
 
     public class MessageBaseImplementation : MessageBase {
@@ -22,26 +20,21 @@ namespace GoogazonActivities.Models
     {
         protected MessageBase(EventType eventType, string need)
         {
-            _need = need;
+            Need = need;
             EventType = eventType.ToString();
         }
 
-        public EventData EventData() => new EventData(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(this)));
+        public EventData AsEventData() => new EventData(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(this)));
 
         public bool IsEventType(EventType eventType) => eventType.ToString().Equals(EventType);
 
         public string UniqueIdentifier() => _id.ToString();
 
-        public string Topic() => EventType;
-
-        public string Need() => _need;
-
         [JsonProperty("eventType")]
         protected readonly string EventType;
 
         [JsonProperty("need")]
-        // ReSharper disable once InconsistentNaming
-        protected readonly string _need;
+        protected readonly string Need;
 
         [JsonProperty("createdDateTime")]
         private readonly DateTime _createdDateTime = DateTime.Now.ToUniversalTime();

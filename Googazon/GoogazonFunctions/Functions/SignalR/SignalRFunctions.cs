@@ -11,8 +11,10 @@ namespace GoogazonFunctions.Functions.SignalR
         [FunctionName("Negotiate")]
         public static SignalRConnectionInfo Negotiate(
             [HttpTrigger(AuthorizationLevel.Anonymous)] HttpRequest request,
-            [SignalRConnectionInfo(HubName = "googazon", ConnectionStringSetting = "AzureSignalRConnectionString")] SignalRConnectionInfo connectionInfo) =>
-            connectionInfo;
+            [SignalRConnectionInfo(HubName = "googazon", ConnectionStringSetting = "AzureSignalRConnectionString")] SignalRConnectionInfo connectionInfo)
+        {
+            return connectionInfo;
+        }
 
         [FunctionName("CustomerServiceContactResult")]
         public static async Task Run(
