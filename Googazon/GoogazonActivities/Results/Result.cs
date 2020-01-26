@@ -22,7 +22,7 @@ namespace GoogazonActivities.Results
 
         public Result() : this(new ResultConfiguration(), InMemoryCache.Instance()) { }
 
-        public Result(IResultConfiguration configuration, IMemoryCache memoryCache)
+        private Result(IResultConfiguration configuration, IMemoryCache memoryCache)
         {
             _configuration = configuration;
             _memoryCache = memoryCache;

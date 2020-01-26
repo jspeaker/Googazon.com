@@ -11,9 +11,7 @@ namespace GoogazonActivities.Messaging
 
         public static ITopicClient Client(string topic)
         {
-            // ReSharper disable InconsistentlySynchronizedField
             if (TopicClients.ContainsKey(topic)) return TopicClients[topic];
-            // ReSharper restore InconsistentlySynchronizedField
 
             lock (LockObject)
             {

@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Text;
 using System.Threading.Tasks;
+using TestConveniences;
 
 namespace GoogazonActivities.Unit.Tests.Messaging.Strategies
 {
@@ -14,32 +15,34 @@ namespace GoogazonActivities.Unit.Tests.Messaging.Strategies
     public class ServiceBusTopicPostmanTests
     {
         [TestMethod, TestCategory("Unit")]
-        public void GivenTopic_WhenAskingToSend_ThenItShouldCallTopicClient()
+        public async Task GivenTopic_WhenAskingToSend_ThenItShouldCallTopicClient()
         {
             // arrange
-            Message message = new Message(Encoding.UTF8.GetBytes("{'Dammit':'Bobby!'}"));
             FakeTopicClient fakeTopicClient = new FakeTopicClient();
-            IServiceBusPostman postman = new ServiceBusTopicPostman(fakeTopicClient, message, new FakePostman());
+            Message message = new Message(Encoding.UTF8.GetBytes("{'Dammit':'Bobby!'}"));
+            FakePostman fakePostman = new FakePostman();
+            IServiceBusPostman postman = new Privateer().Object<ServiceBusTopicPostman>(fakeTopicClient, message, fakePostman);
 
             // act
-            Func<Task> func = async () => await postman.SendAsync();
-            func.Invoke();
+            async Task func() => await postman.SendAsync();
+            await func();
 
             // assert
             fakeTopicClient.CallCount.Should().Be(1);
         }
 
         [TestMethod, TestCategory("Unit")]
-        public void GivenTopic_WhenAskingToSend_ThenItShouldCallNextStrategy()
+        public async Task GivenTopic_WhenAskingToSend_ThenItShouldCallNextStrategy()
         {
             // arrange
+            FakeTopicClient fakeTopicClient = new FakeTopicClient();
             Message message = new Message(Encoding.UTF8.GetBytes("{'Dammit':'Bobby!'}"));
             FakePostman fakePostman = new FakePostman();
-            IServiceBusPostman postman = new ServiceBusTopicPostman(new FakeTopicClient(), message, fakePostman);
+            IServiceBusPostman postman = new Privateer().Object<ServiceBusTopicPostman>(fakeTopicClient, message, fakePostman);
 
             // act
-            Func<Task> func = async () => await postman.SendAsync();
-            func.Invoke();
+            async Task func() => await postman.SendAsync();
+            await func();
 
             // assert
             fakePostman.CallCount.Should().Be(1);

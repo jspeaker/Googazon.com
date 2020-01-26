@@ -15,7 +15,7 @@ namespace GoogazonActivities.Unit.Tests.TopicNeedActivity
     public class TopicNeedActivityTests
     {
         [TestMethod, TestCategory("Unit")]
-        public void GivenNeed_WhenAskingForToExpressNeed_ThenItShouldCallExpressNeed()
+        public void GivenNeed_WhenAskingToExpressNeed_ThenItShouldCallExpressNeed()
         {
             // arrange
             FakeEventMessage fakeEventMessage = new FakeEventMessage(new EventData(new ArraySegment<byte>()));

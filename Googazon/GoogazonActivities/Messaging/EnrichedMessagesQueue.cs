@@ -4,7 +4,7 @@ using Microsoft.Azure.ServiceBus;
 
 namespace GoogazonActivities.Messaging
 {
-    public class EnrichedMessagesQueue
+    public static class EnrichedMessagesQueue
     {
         private static readonly IQueueClient Instance = null;
         private static readonly object LockObject = new object();

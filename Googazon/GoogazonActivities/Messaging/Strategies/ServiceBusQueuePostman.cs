@@ -1,10 +1,10 @@
+using GoogazonActivities.Texts;
+using Microsoft.Azure.ServiceBus;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Text;
 using System.Threading.Tasks;
-using GoogazonActivities.Texts;
-using Microsoft.Azure.ServiceBus;
-using Newtonsoft.Json;
 
 namespace GoogazonActivities.Messaging.Strategies
 {
@@ -17,7 +17,7 @@ namespace GoogazonActivities.Messaging.Strategies
 
         public ServiceBusQueuePostman(string messageBody, IServiceBusPostman nextPostman) : this(EnrichedMessagesQueue.Client, messageBody, new Message(Encoding.UTF8.GetBytes(messageBody)), nextPostman)  { }
 
-        public ServiceBusQueuePostman(IQueueClient queueClient, string messageBody, Message message, IServiceBusPostman nextPostman)
+        private ServiceBusQueuePostman(IQueueClient queueClient, string messageBody, Message message, IServiceBusPostman nextPostman)
         {
             _queueClient = queueClient;
             _messageBody = messageBody;

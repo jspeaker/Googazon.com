@@ -1,9 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using GoogazonActivities.Messaging;
 using GoogazonActivities.Unit.Tests.Fakes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Threading.Tasks;
 
 namespace GoogazonActivities.Unit.Tests.Messaging
 {
