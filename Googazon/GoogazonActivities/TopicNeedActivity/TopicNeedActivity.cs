@@ -16,7 +16,8 @@ namespace GoogazonActivities.TopicNeedActivity
         private readonly IEventMessage _eventMessage;
         private readonly INeed _need;
         private readonly IResult _result;
-        public TopicNeedActivity(string connectionId, string customerId, string topic, string need) : this(new TopicNeedMessage( connectionId, customerId, topic, need)) { }
+        public TopicNeedActivity(string connectionId, string resourceIdentifier, string topic, string need) : 
+            this(new TopicNeedMessage(connectionId, resourceIdentifier, topic, need)) { }
 
         private TopicNeedActivity(IEventMessage eventMessage) : this(eventMessage, new Need(eventMessage), new Result()) { }
 

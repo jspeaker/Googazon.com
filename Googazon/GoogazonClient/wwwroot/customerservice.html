@@ -89,9 +89,9 @@
       var _id = id;
       Googazon.signalRConnection.id = id;
 
-      var uniqueId = function () {
+      const uniqueId = function () {
         return _id;
-      }
+      };
 
       return {
         uniqueId: uniqueId
@@ -141,7 +141,7 @@
 
     connection
       .start()
-      .then(function (x) {
+      .then(function () {
         const params = new URLSearchParams(connection.connection.transport.webSocket.url);
         Googazon.signalRConnection.id = params.get('id');
 

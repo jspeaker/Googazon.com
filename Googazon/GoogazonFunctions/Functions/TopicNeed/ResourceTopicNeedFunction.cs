@@ -14,13 +14,13 @@ namespace GoogazonFunctions.Functions.TopicNeed
     {
         [FunctionName("ResourceTopicNeed")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "{resource}/{customerId}/{topic}/{need}")] HttpRequest request,
-            string customerId, string topic, string need)
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "{resource}/{resourceIdentifier}/{topic}/{need}")] HttpRequest request,
+            string resourceIdentifier, string topic, string need)
         {
             try
             {
                 string connectionId = request.Headers["X-ConnectionId"].First();
-                await new TopicNeedActivity(connectionId, customerId, topic, need).ExpressNeed();
+                await new TopicNeedActivity(connectionId, resourceIdentifier, topic, need).ExpressNeed();
                 return new OkResult();
             }
             catch (Exception)
