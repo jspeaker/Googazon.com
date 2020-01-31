@@ -16,7 +16,7 @@ namespace GoogazonFunctions.Functions.SignalR
             [SignalRConnectionInfo(HubName = "googazon", ConnectionStringSetting = "AzureSignalRConnectionString")] SignalRConnectionInfo connectionInfo) 
                 => connectionInfo;
 
-        [FunctionName("CustomerServiceContactResult")]
+        [FunctionName("ResourceTopicNeedResult")]
         public static async Task Run(
             [ServiceBusTrigger("result", Connection = "ServiceBusConnectionString")] string message,
             [SignalR(HubName = "googazon")] IAsyncCollector<SignalRMessage> signalRMessages)
