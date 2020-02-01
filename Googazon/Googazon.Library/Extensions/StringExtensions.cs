@@ -1,4 +1,5 @@
-﻿using Microsoft.Azure.ServiceBus;
+﻿using Microsoft.Azure.EventHubs;
+using Microsoft.Azure.ServiceBus;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Text;
@@ -18,6 +19,8 @@ namespace Googazon.Library.Extensions
             }
             return serviceBusMessage;
         }
+
+        public static EventData AsEventData(this string value) => new EventData(value.AsBytes());
 
         public static T AsType<T>(this string value) where T : class => JsonConvert.DeserializeObject<T>(value);
 

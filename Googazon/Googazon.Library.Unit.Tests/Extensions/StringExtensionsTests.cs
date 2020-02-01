@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using Googazon.Library.Extensions;
+using Microsoft.Azure.EventHubs;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -12,6 +13,20 @@ namespace Googazon.Library.Unit.Tests.Extensions
     [TestClass]
     public class StringExtensionsTests
     {
+        [TestMethod, TestCategory("Unit")]
+        public void GivenString_WhenAskingAsEventData_ThenItShouldReturnCorrectValue()
+        {
+            // arrange
+            const string messageBody = "message body";
+
+            // act
+            EventData actual = messageBody.AsEventData();
+
+            // assert
+            actual.Should().BeOfType<EventData>();
+            Encoding.UTF8.GetString(actual.Body.Array).Should().Be(messageBody);
+        }
+
         [TestMethod, TestCategory("Unit")]
         public void GivenString_WhenAskingAsBytes_ThenItShouldReturnCorrectValue()
         {

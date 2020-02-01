@@ -13,8 +13,7 @@ namespace GoogazonFunctions.Functions.Hydration
     public class RiverFunction
     {
         [FunctionName("RiverFunction")]
-        public async Task Run(
-            [EventHubTrigger("rapids", Connection = "EventHubConnectionString")] EventData[] events)
+        public async Task Run([EventHubTrigger("rapids", Connection = "EventHubConnectionString")] EventData[] events)
         {
             List<Exception> exceptions = new List<Exception>();
 
@@ -23,6 +22,7 @@ namespace GoogazonFunctions.Functions.Hydration
                 try
                 {
                     EventMessageBody messageBody = new EventMessageBody(eventData);
+
                     IEventMessage message = JsonConvert.DeserializeObject<MessageBaseImplementation>(messageBody);
                     if (message.IsEventType(EventType.None)) continue;
 

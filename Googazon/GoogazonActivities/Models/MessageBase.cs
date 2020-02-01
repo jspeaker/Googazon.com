@@ -1,7 +1,7 @@
+using Googazon.Library.Extensions;
 using Microsoft.Azure.EventHubs;
 using Newtonsoft.Json;
 using System;
-using System.Text;
 
 namespace GoogazonActivities.Models
 {
@@ -24,7 +24,7 @@ namespace GoogazonActivities.Models
             EventType = eventType.ToString();
         }
 
-        public EventData AsEventData() => new EventData(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(this)));
+        public EventData AsEventData() => JsonConvert.SerializeObject(this).AsEventData();
 
         public bool IsEventType(EventType eventType) => eventType.ToString().Equals(EventType);
 

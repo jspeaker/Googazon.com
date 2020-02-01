@@ -1,8 +1,6 @@
 using Googazon.Library.Extensions;
 using GoogazonActivities.Texts;
 using Microsoft.Azure.ServiceBus;
-using Newtonsoft.Json;
-using System.Collections.Generic;
 using System.Dynamic;
 using System.Threading.Tasks;
 
@@ -27,7 +25,7 @@ namespace GoogazonActivities.Messaging.Strategies
 
         public async Task SendAsync()
         {
-            if (!((IDictionary<string, object>) JsonConvert.DeserializeObject<ExpandoObject>(_messageBody)).ContainsKey(new ResultsFieldName()))
+            if (!_messageBody.AsType<ExpandoObject>().HasProperty(new ResultsFieldName()))
             {
                 await _nextPostman.SendAsync();
                 return;

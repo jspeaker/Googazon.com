@@ -37,5 +37,33 @@ namespace Googazon.Library.Unit.Tests.Extensions
             // assert
             actual.Should().BeOfType<EventData>();
         }
+
+        [TestMethod, TestCategory("Unit")]
+        public void GivenDynamicWithProperty_WhenAskingHasProperty_ThenItShouldReturnTrue()
+        {
+            // arrange
+            const string json = "{\"Dammit\":\"Bobby\"}";
+            ExpandoObject expandoObject = JsonConvert.DeserializeObject<ExpandoObject>(json);
+
+            // act
+            bool actual = expandoObject.HasProperty("Dammit");
+
+            // assert
+            actual.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Unit")]
+        public void GivenDynamicWithoutProperty_WhenAskingHasProperty_ThenItShouldReturnTrue()
+        {
+            // arrange
+            const string json = "{\"Dammit\":\"Bobby\"}";
+            ExpandoObject expandoObject = JsonConvert.DeserializeObject<ExpandoObject>(json);
+
+            // act
+            bool actual = expandoObject.HasProperty("Bobby");
+
+            // assert
+            actual.Should().BeFalse();
+        }
     }
 }
