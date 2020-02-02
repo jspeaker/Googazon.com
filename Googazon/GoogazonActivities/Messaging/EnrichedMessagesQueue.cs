@@ -2,12 +2,14 @@
 using GoogazonActivities.Texts.ServiceBus;
 using Microsoft.Azure.ServiceBus;
 
+// ReSharper disable PossibleMultipleWriteAccessInDoubleCheckLocking
+// ReSharper disable ReadAccessInDoubleCheckLocking
 namespace GoogazonActivities.Messaging
 {
     public static class EnrichedMessagesQueue
     {
-        private static readonly IQueueClient Instance = null;
-        private static readonly object LockObject = new object();
+        private static IQueueClient Instance;
+        private static volatile object LockObject = new object();
 
         public static IQueueClient Client
         {
@@ -20,7 +22,8 @@ namespace GoogazonActivities.Messaging
                 {
                     if (Instance != null) return Instance;
 
-                    return new QueueClient(new ServiceBusConfiguration().ConnectionString(), new ResultQueueName());
+                    Instance = new QueueClient(new ServiceBusConfiguration().ConnectionString(), new ResultQueueName());
+                    return Instance;
                 }
             }
         }
