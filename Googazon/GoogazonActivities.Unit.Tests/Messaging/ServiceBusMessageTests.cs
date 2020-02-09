@@ -4,6 +4,7 @@ using GoogazonActivities.Unit.Tests.Fakes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Threading.Tasks;
+using TestConveniences;
 
 namespace GoogazonActivities.Unit.Tests.Messaging
 {
@@ -15,7 +16,7 @@ namespace GoogazonActivities.Unit.Tests.Messaging
         {
             // arrange
             FakePostman fakePostman = new FakePostman();
-            ServiceBusMessage serviceBusMessage = new ServiceBusMessage(fakePostman);
+            ServiceBusMessage serviceBusMessage = new Privateer().Object<ServiceBusMessage>(fakePostman);
 
             // act
             Func<Task> func = async () => await serviceBusMessage.SendAsync();

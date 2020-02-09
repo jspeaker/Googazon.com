@@ -5,17 +5,6 @@ using System;
 
 namespace GoogazonActivities.Models
 {
-    public interface IEventMessage
-    {
-        EventData AsEventData();
-        bool IsEventType(EventType eventType);
-        string UniqueIdentifier();
-    }
-
-    public class MessageBaseImplementation : MessageBase {
-        public MessageBaseImplementation(EventType eventType, string need) : base(eventType, need) { }
-    }
-
     public abstract class MessageBase : IEventMessage
     {
         protected MessageBase(EventType eventType, string need)

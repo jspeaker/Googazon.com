@@ -2,7 +2,6 @@ using GoogazonActivities.Messaging;
 using GoogazonActivities.Models;
 using Microsoft.Azure.EventHubs;
 using Microsoft.Azure.WebJobs;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,11 +21,9 @@ namespace GoogazonFunctions.Functions.Hydration
                 try
                 {
                     EventMessageBody messageBody = new EventMessageBody(eventData);
+                    if (messageBody.IsEventType(EventType.None)) continue;
 
-                    IEventMessage message = JsonConvert.DeserializeObject<MessageBaseImplementation>(messageBody);
-                    if (message.IsEventType(EventType.None)) continue;
-
-                    await new ServiceBusMessage(messageBody, new Topic(messageBody), new Need(messageBody)).SendAsync();
+                    await messageBody.AsServiceBusMessage().SendAsync();
                 }
                 catch (Exception e)
                 {

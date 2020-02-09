@@ -1,13 +1,12 @@
+using GoogazonActivities.Models;
 using GoogazonActivities.TopicNeedActivity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
-using GoogazonActivities.Models;
 
 namespace GoogazonFunctions.Functions.TopicNeed
 {
@@ -20,8 +19,7 @@ namespace GoogazonFunctions.Functions.TopicNeed
         {
             try
             {
-                string connectionId = request.Headers["X-ConnectionId"].First();
-                await new TopicNeedActivity(connectionId, resourceIdentifier, topic, new ResourceBasedNeed(resource, need)).ExpressNeed();
+                await new TopicNeedActivity(new ConnectionId(request.Headers), resourceIdentifier, topic, new ResourceBasedNeed(resource, need)).ExpressNeed();
                 return new OkResult();
             }
             catch (Exception)

@@ -1,5 +1,5 @@
-using System.Threading.Tasks;
 using GoogazonActivities.Messaging.Strategies;
+using System.Threading.Tasks;
 
 namespace GoogazonActivities.Messaging
 {
@@ -9,8 +9,13 @@ namespace GoogazonActivities.Messaging
 
         public ServiceBusMessage(string messageBody, string topic, string need) : this(new ServiceBusPostmen(topic, need, messageBody)) { }
 
-        public ServiceBusMessage(IServiceBusPostman postman) => _serviceBusPostman = postman;
+        protected ServiceBusMessage(IServiceBusPostman postman) => _serviceBusPostman = postman;
 
         public async Task SendAsync() => await _serviceBusPostman.SendAsync();
+    }
+
+    public class NullServiceBusMessage : ServiceBusMessage
+    {
+        public NullServiceBusMessage() : base(new ServiceBusUselessPostman()) { }
     }
 }
