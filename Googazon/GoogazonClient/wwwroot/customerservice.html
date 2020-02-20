@@ -3,7 +3,7 @@
 <head>
   <title>Need-based Micro-Services + SignalR Demo</title>
   <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     .slide-fade-enter-active, .slide-fade-leave-active {
       transition: all .5s ease;
@@ -18,13 +18,14 @@
 </head>
 
 <body>
-  <p>&nbsp;</p>
-  <div id="app" class="container">
+  <a href="/"><img class="" src="images/logo.png" alt="googazon.com" width="400" /></a>
+  <div id="app" class="container jumbotron">
     <h3>Customer Service Contact Options</h3>
-    <div class="row">
-      <nav class="col-sm" id="navigation">
-        <a href="/">Home</a> | <a href="customerservice.html">Contact Us</a>
-      </nav>
+    <div class="navbar">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="customerservice.html">Contact Us</a></li>
+      </ul>
     </div>
     <div class="row">
       <div class="col-sm" id="currentDateTime"></div>
@@ -43,21 +44,21 @@
               <div style="display: inline-block; padding-left: 12px;">
                 <div>
                   <p>
-                    <span class="text-info small"><strong>{{ contactOption.Results[0].sourceOperation }}</strong></span>
-                    <span class="text-info small" v-if="!contactOption.Results[0].open">Sorry, this service is closed.</span>
-                    <span class="text-info small" v-if="contactOption.Results[0].open">Yes, this service is open!</span>
+                    <span class="text-info"><strong>{{ contactOption.Results[0].sourceOperation }}</strong>&mdash;</span>
+                    <span class="text-info" v-if="!contactOption.Results[0].open">Sorry, this service is closed.</span>
+                    <span class="text-info" v-if="contactOption.Results[0].open">Yes, this service is open!</span>
                     <br />
 
-                    <span class="text-info small" v-if="contactOption.Results[0].open && contactOption.Results[0].url"><a class="text-primary" v-bind:href="contactOption.Results[0].url">Chat with a Representative</a> </span>
-                    <span class="text-info small" v-if="contactOption.Results[0].open && contactOption.Results[0].email"><a class="text-primary" v-on:click="mailTo(contactOption.Results[0].email)">Email Us</a> </span>
-                    <span class="text-info small" v-if="contactOption.Results[0].open && contactOption.Results[0].phoneNumber">Call Us at {{ contactOption.Results[0].phoneNumber }} </span>
-                    <span class="text-info small" v-if="contactOption.Results[0].open && contactOption.Results[0].headquartersAddress">Visit Us at {{ contactOption.Results[0].headquartersAddress.streetAddress1 }}, {{ contactOption.Results[0].headquartersAddress.city }}, {{ contactOption.Results[0].headquartersAddress.state }} {{ contactOption.Results[0].headquartersAddress.zipCode }}</span>
+                    <span class="text-info" v-if="contactOption.Results[0].open && contactOption.Results[0].url"><a class="btn btn-primary" v-bind:href="contactOption.Results[0].url">Chat with a Representative</a> </span>
+                    <span class="text-info" v-if="contactOption.Results[0].open && contactOption.Results[0].email"><a class="btn btn-primary" href="javascript:void(0);" v-on:click="mailTo(contactOption.Results[0].email)">Email Us</a> </span>
+                    <span class="text-info" v-if="contactOption.Results[0].open && contactOption.Results[0].phoneNumber">Call Us at {{ contactOption.Results[0].phoneNumber }} </span>
+                    <span class="text-info" v-if="contactOption.Results[0].open && contactOption.Results[0].headquartersAddress">Visit Us at {{ contactOption.Results[0].headquartersAddress.streetAddress1 }}, {{ contactOption.Results[0].headquartersAddress.city }}, {{ contactOption.Results[0].headquartersAddress.state }} {{ contactOption.Results[0].headquartersAddress.zipCode }}</span>
 
-                    <div class="text-info small" v-if="!contactOption.Results[0].open">Hours of operation:</div>
+                    <div class="text-info" v-if="!contactOption.Results[0].open">Hours of operation:</div>
                     <div class="" v-if="!contactOption.Results[0].open" v-for="hours in contactOption.Results[0].hours.OpenHours" v-bind:key="hours.id">
-                      <span class="text-info small">{{ daysOfWeek[hours.DayOfWeek] }}</span>
-                      <span class="text-info small" v-if="hours.OpenTime === hours.CloseTime">Closed</span>
-                      <span class="text-info small" v-if="hours.OpenTime !== hours.CloseTime">{{ new Date("1970-01-01T" + hours.OpenTime + "Z").toLocaleTimeString() }} to {{ new Date("1970-01-01T" + hours.CloseTime + "Z").toLocaleTimeString() }}</span>
+                      <span class="text-info">{{ daysOfWeek[hours.DayOfWeek] }}</span>
+                      <span class="text-info" v-if="hours.OpenTime === hours.CloseTime">Closed</span>
+                      <span class="text-info" v-if="hours.OpenTime !== hours.CloseTime">{{ new Date("1970-01-01T" + hours.OpenTime + "Z").toLocaleTimeString() }} to {{ new Date("1970-01-01T" + hours.CloseTime + "Z").toLocaleTimeString() }}</span>
                     </div>
                   </p>
                 </div>
