@@ -1,4 +1,4 @@
-using Googazon.Library.Messaging;
+using Microsoft.Azure.EventHubs;
 using Microsoft.Azure.WebJobs;
 using NeedFulfillmentActivities.Messaging;
 using NeedFulfillmentActivities.Models.BrickAndMortar;
@@ -11,14 +11,15 @@ namespace NeedFulfillmentFunctions.Functions
     {
         [FunctionName("CustomerServiceBrickAndMortar")]
         public static async Task Run(
-            [ServiceBusTrigger("customerservice", "brickandmortar", Connection = "ServiceBusConnectionString")] string message)
+            [ServiceBusTrigger("customerservice", "brickandmortar", Connection = "ServiceBusConnectionString")] string message,
+            [EventHub("rapids", Connection = "EventHubConnectionString")] IAsyncCollector<EventData> collector)
         {
             try
             {
                 ServiceBusMessage serviceBusMessage = new ServiceBusMessage(message);
                 if (serviceBusMessage.IsEnriched()) return;
 
-                await EventHub.Client.SendAsync(serviceBusMessage.EnrichedInstance(new BrickAndMortarState()).AsEventData());
+                await collector.AddAsync(serviceBusMessage.EnrichedInstance(new BrickAndMortarState()).AsEventData());
             }
             catch (Exception e)
             {

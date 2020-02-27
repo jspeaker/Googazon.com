@@ -1,4 +1,4 @@
-using Googazon.Library.Messaging;
+using Microsoft.Azure.EventHubs;
 using Microsoft.Azure.WebJobs;
 using NeedFulfillmentActivities.Messaging;
 using NeedFulfillmentActivities.Models.Chat;
@@ -11,14 +11,15 @@ namespace NeedFulfillmentFunctions.Functions
     {
         [FunctionName("CustomerServiceChat")]
         public static async Task Run(
-            [ServiceBusTrigger("customerservice", "chat", Connection = "ServiceBusConnectionString")] string message)
+            [ServiceBusTrigger("customerservice", "chat", Connection = "ServiceBusConnectionString")] string message,
+            [EventHub("rapids", Connection = "EventHubConnectionString")] IAsyncCollector<EventData> collector)
         {
             try
             {
                 ServiceBusMessage serviceBusMessage = new ServiceBusMessage(message);
                 if (serviceBusMessage.IsEnriched()) return;
 
-                await EventHub.Client.SendAsync(serviceBusMessage.EnrichedInstance(new ChatState()).AsEventData());
+                await collector.AddAsync(serviceBusMessage.EnrichedInstance(new ChatState()).AsEventData());
             }
             catch (Exception e)
             {
